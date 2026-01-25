@@ -79,13 +79,15 @@ const Footer = () => {
                             <div className="w-10 h-10 rounded-xl glass flex items-center justify-center flex-shrink-0 border border-white/10">
                                 <Phone className="w-5 h-5 text-accent" />
                             </div>
-                            <span className="pt-2">+91 12345 67890</span>
+                            <a href="tel:+919771935170" className="hover:text-primary transition-colors pt-2">
+                                +91 9771935170
+                            </a>
                         </li>
                         <li className="flex items-start gap-4">
                             <div className="w-10 h-10 rounded-xl glass flex items-center justify-center flex-shrink-0 border border-white/10">
                                 <MapPin className="w-5 h-5 text-primary" />
                             </div>
-                            <span className="pt-2">Professional Clinic, Street Name,<br />City, State, India</span>
+                            <span className="pt-2">Patna, Delhi, Noida, Gurgaon</span>
                         </li>
                     </ul>
                 </div>
