@@ -7,7 +7,8 @@ import { ArrowRight, Sparkles, Activity, ShieldCheck } from 'lucide-react';
 const Hero = () => {
     return (
         <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 md:px-12 overflow-hidden py-20">
-            {/* Background elements removed in favor of HandShakeBackground */}
+            {/* Soft mesh gradient for light theme depth */}
+            <div className="mesh-gradient opacity-30" />
 
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}

@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: 222 47% 4%;
-  --foreground: 210 40% 98%;
+  --background: 210 40% 98%;
+  --foreground: 222 47% 11%;
 
   --primary: 173 80% 40%;
-  --primary-foreground: 222 47% 11.2%;
+  --primary-foreground: 210 40% 98%;
 
-  --secondary: 217 32% 17%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
 
   --accent: 199 89% 48%;
   --accent-foreground: 210 40% 98%;
 
-  --card: 222 47% 6%;
-  --card-foreground: 210 40% 98%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
 
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
   --ring: 173 80% 40%;
 
   --radius: 1rem;
@@ -50,21 +50,22 @@ body {
   color: hsl(var(--foreground));
   font-family: var(--font-sans);
   overflow-x: hidden;
-  selection-background: hsl(var(--primary) / 0.3);
+  selection-background: hsl(var(--primary) / 0.1);
 }
 
-/* Glassmorphism utility */
+/* Glassmorphism utility - Updated for Light Mode */
 .glass {
-  background: hsl(222 47% 4% / 0.7);
+  background: hsla(0, 0%, 100%, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid hsl(var(--foreground) / 0.1);
 }
 
 .glass-card {
-  background: linear-gradient(135deg, hsl(var(--foreground) / 0.05) 0%, hsl(var(--foreground) / 0.01) 100%);
+  background: linear-gradient(135deg, hsla(0, 0%, 100%, 0.8) 0%, hsla(0, 0%, 100%, 0.4) 100%);
   backdrop-filter: blur(10px);
-  border: 1px solid hsl(var(--foreground) / 0.1);
+  border: 1px solid hsl(var(--foreground) / 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
 }
 
 /* Gradient text */
@@ -73,6 +74,21 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Mesh Gradient Background - Light Mode */
+.mesh-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(at 0% 0%, hsl(var(--primary) / 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, hsl(var(--accent) / 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsl(var(--primary) / 0.1) 0px, transparent 50%);
+  z-index: -1;
 }
 
 /* Animation utilities */
