@@ -34,7 +34,7 @@ const Navbar = () => {
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="hover:text-primary transition-all text-secondary relative group overflow-hidden"
+              className="hover:text-primary transition-all text-foreground font-black relative group overflow-hidden"
             >
               {item}
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
@@ -43,14 +43,14 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-6">
-          <button className="hidden sm:block text-xs font-black uppercase tracking-widest text-secondary hover:text-white transition-colors">
+          <button className="hidden sm:block text-xs font-black uppercase tracking-widest text-foreground/70 hover:text-primary transition-colors">
             Patient Portal
           </button>
           <a href="#contact" className="bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-black transition-all shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 uppercase tracking-widest">
             Book Now
           </a>
           <div
-            className="md:hidden p-2 glass rounded-xl cursor-pointer hover:bg-white/10 transition-colors"
+            className="md:hidden p-2 glass rounded-xl cursor-pointer hover:bg-black/5 transition-colors"
             onClick={() => setMobileMenuOpen(true)}
           >
             <Menu className="w-6 h-6 text-primary" />
@@ -65,7 +65,7 @@ const Navbar = () => {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 z-[100] glass flex flex-col p-8"
+            className="fixed inset-0 z-[100] bg-white flex flex-col p-8"
           >
             <div className="flex justify-between items-center mb-12">
               <div className="flex items-center gap-2 text-2xl font-black gradient-text">
@@ -84,7 +84,7 @@ const Navbar = () => {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-4xl font-black text-white hover:text-primary transition-colors flex items-center justify-between group"
+                  className="text-4xl font-black text-foreground hover:text-primary transition-colors flex items-center justify-between group"
                 >
                   {item}
                   <ChevronRight className="w-8 h-8 group-hover:translate-x-2 transition-transform opacity-20" />
@@ -92,8 +92,8 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="mt-auto pt-10 border-t border-white/10 space-y-6">
-              <button className="w-full text-center py-4 text-secondary font-black uppercase tracking-widest">
+            <div className="mt-auto pt-10 border-t border-black/5 space-y-6">
+              <button className="w-full text-center py-4 text-foreground/60 font-black uppercase tracking-widest">
                 Patient Portal
               </button>
               <a

@@ -6,9 +6,8 @@ import { ArrowRight, Sparkles, Activity, ShieldCheck } from 'lucide-react';
 
 const Hero = () => {
     return (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 md:px-12 overflow-hidden py-20">
-            {/* Soft mesh gradient for light theme depth */}
-            <div className="mesh-gradient opacity-30" />
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 md:px-12 overflow-hidden py-20 bg-background">
+            {/* Background noise removed for maximum clarity */}
 
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}

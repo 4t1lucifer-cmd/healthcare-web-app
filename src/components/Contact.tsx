@@ -86,7 +86,7 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-secondary text-xl mb-14 leading-relaxed max-w-md font-medium"
+                        className="text-foreground/80 text-xl mb-14 leading-relaxed max-w-md font-bold"
                     >
                         Our expert physiotherapists are ready to help you move better and live pain-free.
                         Book your consultation today.
@@ -133,8 +133,8 @@ const Contact = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-3">
-                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <User className="w-4 h-4" /> Full Name
+                                <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <User className="w-4 h-4 text-primary" /> Full Name
                                 </label>
                                 <input
                                     required
@@ -147,8 +147,8 @@ const Contact = () => {
                                 {errors.name && <p className="text-red-400 text-xs font-bold ml-1">{errors.name}</p>}
                             </div>
                             <div className="space-y-3">
-                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <Mail className="w-4 h-4" /> Email Address
+                                <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <Mail className="w-4 h-4 text-primary" /> Email Address
                                 </label>
                                 <input
                                     required
@@ -164,8 +164,8 @@ const Contact = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-3">
-                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <Calendar className="w-4 h-4" /> Preferred Date
+                                <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <Calendar className="w-4 h-4 text-primary" /> Preferred Date
                                 </label>
                                 <input
                                     required
@@ -176,8 +176,8 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="space-y-3">
-                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <Clock className="w-4 h-4" /> Preferred Time
+                                <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <Clock className="w-4 h-4 text-primary" /> Preferred Time
                                 </label>
                                 <input
                                     required
@@ -190,8 +190,8 @@ const Contact = () => {
                         </div>
 
                         <div className="space-y-3">
-                            <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
-                                <ClipboardList className="w-4 h-4" /> Select Service
+                            <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
+                                <ClipboardList className="w-4 h-4 text-primary" /> Select Service
                             </label>
                             <div className="relative">
                                 <select
@@ -214,8 +214,8 @@ const Contact = () => {
                         </div>
 
                         <div className="space-y-3">
-                            <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
-                                <MessageSquare className="w-4 h-4" /> Message / Symptoms
+                            <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
+                                <MessageSquare className="w-4 h-4 text-primary" /> Message / Symptoms
                             </label>
                             <textarea
                                 required

@@ -105,11 +105,8 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
 
 const Features = () => {
     return (
-        <section id="services" className="py-32 px-6 md:px-12 relative overflow-hidden scroll-mt-20">
-            {/* Background Accents with Mesh Gradient */}
-            <div className="mesh-gradient opacity-20" />
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full -z-10" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent/10 blur-[120px] rounded-full -z-10" />
+        <section id="services" className="py-32 px-6 md:px-12 relative overflow-hidden scroll-mt-20 bg-background">
+            {/* Clean structural layout for maximum readability */}
 
             <div className="text-center mb-20">
                 <motion.h2
