@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Loader2, Globe, Activity } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Loader2, Calendar, Clock, ClipboardList, User, Mail, MessageSquare } from 'lucide-react';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -11,12 +11,34 @@ const Contact = () => {
         message: '',
         date: '',
         time: '',
-        service: 'General Consultation'
+        service: 'General Consultation',
     });
+    const [honeypot, setHoneypot] = useState('');
     const [status, setStatus] = useState<null | 'loading' | 'success' | 'error'>(null);
+    const [errors, setErrors] = useState<Record<string, string>>({});
+
+    const validate = () => {
+        const newErrors: Record<string, string> = {};
+        if (formData.name.length < 2) newErrors.name = "Name is too short";
+        if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Invalid email";
+        if (formData.message.length < 10) newErrors.message = "Please provide more detail (min 10 chars)";
+        if (!formData.date) newErrors.date = "Date is required";
+        if (!formData.time) newErrors.time = "Time is required";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (honeypot) {
+            console.log("Bot detected");
+            return;
+        }
+
+        if (!validate()) return;
+
         setStatus('loading');
 
         try {
@@ -36,6 +58,7 @@ const Contact = () => {
                     time: '',
                     service: 'General Consultation'
                 });
+                setErrors({});
                 setTimeout(() => setStatus(null), 5000);
             } else {
                 setStatus('error');
@@ -46,129 +69,179 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-24 px-6 md:px-12 max-w-5xl mx-auto scroll-mt-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
-                        Start Your <span className="gradient-text">Recovery</span> Journey
-                    </h2>
-                    <p className="text-secondary text-lg mb-12 leading-relaxed">
+        <section id="contact" className="py-32 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+                <div className="lg:sticky lg:top-32 font-bold tracking-tight">
+                    <motion.h2
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="text-5xl md:text-7xl font-black mb-10 leading-[0.9]"
+                    >
+                        Start Your <br />
+                        <span className="gradient-text">Recovery</span> Journey
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-secondary text-xl mb-14 leading-relaxed max-w-md font-medium"
+                    >
                         Our expert physiotherapists are ready to help you move better and live pain-free.
-                        Book your consultation today and take the first step towards health.
-                    </p>
+                        Book your consultation today.
+                    </motion.p>
 
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-4 text-secondary">
-                            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                                <Activity className="w-5 h-5 text-primary" />
-                            </div>
-                            <span>Personalized Treatment Plans</span>
-                        </div>
-                        <div className="flex items-center gap-4 text-secondary">
-                            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                                <CheckCircle className="w-5 h-5 text-green-400" />
-                            </div>
-                            <span>Professional Medical Expertise</span>
-                        </div>
+                    <div className="space-y-8">
+                        {[
+                            { icon: CheckCircle, text: "Personalized Treatment Plans", color: "text-primary" },
+                            { icon: CheckCircle, text: "Evidence-Based Techniques", color: "text-accent" },
+                            { icon: CheckCircle, text: "State-of-the-art Equipment", color: "text-primary" }
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 + i * 0.1 }}
+                                className="flex items-center gap-5 text-lg"
+                            >
+                                <item.icon className={`w-7 h-7 ${item.color}`} />
+                                <span className="text-foreground/90">{item.text}</span>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
 
                 <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="glass p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative"
+                    className="glass p-10 md:p-12 rounded-[3rem] shadow-2xl relative border border-white/10"
                 >
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-secondary ml-1">Full Name</label>
-                            <input
-                                required
-                                type="text"
-                                placeholder="Ex. Alex Morgan"
-                                className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-white/20"
-                                value={formData.name}
-                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            />
-                        </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-secondary ml-1">Email Address</label>
-                            <input
-                                required
-                                type="email"
-                                placeholder="alex@company.com"
-                                className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-white/20"
-                                value={formData.email}
-                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            />
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                        {/* Honeypot field for spam prevention */}
+                        <input
+                            type="text"
+                            name="hp"
+                            style={{ display: 'none' }}
+                            tabIndex={-1}
+                            autoComplete="off"
+                            value={honeypot}
+                            onChange={(e) => setHoneypot(e.target.value)}
+                        />
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="space-y-3">
+                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <User className="w-4 h-4" /> Full Name
+                                </label>
+                                <input
+                                    required
+                                    type="text"
+                                    placeholder="Alex Morgan"
+                                    className={`w-full bg-white/5 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all placeholder:text-white/20 font-medium`}
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                />
+                                {errors.name && <p className="text-red-400 text-xs font-bold ml-1">{errors.name}</p>}
+                            </div>
+                            <div className="space-y-3">
+                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <Mail className="w-4 h-4" /> Email Address
+                                </label>
+                                <input
+                                    required
+                                    type="email"
+                                    placeholder="alex@example.com"
+                                    className={`w-full bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all placeholder:text-white/20 font-medium`}
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                />
+                                {errors.email && <p className="text-red-400 text-xs font-bold ml-1">{errors.email}</p>}
+                            </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold text-secondary ml-1">Preferred Date</label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="space-y-3">
+                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <Calendar className="w-4 h-4" /> Preferred Date
+                                </label>
                                 <input
                                     required
                                     type="date"
-                                    className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white/60"
+                                    className="w-full bg-white/5 border border-white/10 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all text-white/60 font-medium"
                                     value={formData.date}
                                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold text-secondary ml-1">Preferred Time</label>
+                            <div className="space-y-3">
+                                <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
+                                    <Clock className="w-4 h-4" /> Preferred Time
+                                </label>
                                 <input
                                     required
                                     type="time"
-                                    className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white/60"
+                                    className="w-full bg-white/5 border border-white/10 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all text-white/60 font-medium"
                                     value={formData.time}
                                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
                                 />
                             </div>
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-secondary ml-1">Select Service</label>
-                            <select
-                                required
-                                className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white/60 appearance-none"
-                                value={formData.service}
-                                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                            >
-                                <option value="General Consultation" className="bg-card">General Consultation</option>
-                                <option value="Sports Injuries" className="bg-card">Sports Injuries</option>
-                                <option value="Post-Op Rehab" className="bg-card">Post-Op Rehab</option>
-                                <option value="Chronic Pain" className="bg-card">Chronic Pain</option>
-                                <option value="Manual Therapy" className="bg-card">Manual Therapy</option>
-                                <option value="Home Visits" className="bg-card">Home Visits</option>
-                                <option value="Ergonomics" className="bg-card">Ergonomics</option>
-                            </select>
+                        <div className="space-y-3">
+                            <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
+                                <ClipboardList className="w-4 h-4" /> Select Service
+                            </label>
+                            <div className="relative">
+                                <select
+                                    required
+                                    className="w-full bg-white/5 border border-white/10 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all text-white/60 appearance-none font-medium cursor-pointer"
+                                    value={formData.service}
+                                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                                >
+                                    {[
+                                        "General Consultation", "Sports Injuries", "Post-Op Rehab",
+                                        "Chronic Pain", "Manual Therapy", "Home Visits", "Ergonomics"
+                                    ].map(s => (
+                                        <option key={s} value={s} className="bg-card text-white">{s}</option>
+                                    ))}
+                                </select>
+                                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                                    ▼
+                                </div>
+                            </div>
                         </div>
-                        <div className="space-y-2">
-                            <label className="text-sm font-semibold text-secondary ml-1">Message / Symptoms</label>
+
+                        <div className="space-y-3">
+                            <label className="text-sm font-black text-secondary uppercase tracking-widest ml-1 flex items-center gap-2">
+                                <MessageSquare className="w-4 h-4" /> Message / Symptoms
+                            </label>
                             <textarea
                                 required
                                 rows={4}
-                                placeholder="Briefly describe your condition or symptoms..."
-                                className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none placeholder:text-white/20"
+                                placeholder="Tell us about your condition..."
+                                className={`w-full bg-white/5 border ${errors.message ? 'border-red-500/50' : 'border-white/10'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all resize-none placeholder:text-white/20 font-medium`}
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             />
+                            {errors.message && <p className="text-red-400 text-xs font-bold ml-1">{errors.message}</p>}
                         </div>
 
                         <button
                             type="submit"
                             disabled={status === 'loading'}
-                            className="w-full bg-primary hover:bg-blue-600 py-5 rounded-2xl font-bold transition-all disabled:opacity-50 flex items-center justify-center gap-3 text-lg"
+                            className="w-full bg-primary text-primary-foreground py-6 rounded-2xl font-black transition-all disabled:opacity-50 flex items-center justify-center gap-4 text-xl shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]"
                         >
                             {status === 'loading' ? (
                                 <>
-                                    <Loader2 className="w-5 h-5 animate-spin" />
-                                    Sending...
+                                    <Loader2 className="w-6 h-6 animate-spin" />
+                                    Processing...
                                 </>
                             ) : (
                                 <>
-                                    <Send className="w-5 h-5" />
-                                    Send Message
+                                    <Send className="w-6 h-6" />
+                                    Book My Consultation
                                 </>
                             )}
                         </button>
@@ -179,10 +252,10 @@ const Contact = () => {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0 }}
-                                    className="flex items-center justify-center gap-2 text-green-400 font-bold"
+                                    className="flex items-center justify-center gap-3 text-green-400 font-black p-4 rounded-xl bg-green-400/10 border border-green-400/20"
                                 >
-                                    <CheckCircle className="w-5 h-5" />
-                                    Message sent successfully!
+                                    <CheckCircle className="w-6 h-6" />
+                                    Appointment request sent!
                                 </motion.div>
                             )}
                             {status === 'error' && (
@@ -190,10 +263,10 @@ const Contact = () => {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0 }}
-                                    className="flex items-center justify-center gap-2 text-red-400 font-bold"
+                                    className="flex items-center justify-center gap-3 text-red-400 font-black p-4 rounded-xl bg-red-400/10 border border-red-400/20"
                                 >
-                                    <AlertCircle className="w-5 h-5" />
-                                    Something went wrong.
+                                    <AlertCircle className="w-6 h-6" />
+                                    Submission failed. Please try again.
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -205,3 +278,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

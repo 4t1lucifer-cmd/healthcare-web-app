@@ -2,60 +2,71 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Activity, ShieldCheck } from 'lucide-react';
 
 const Hero = () => {
     return (
-        <section className="relative pt-32 pb-20 px-6 md:px-12 flex flex-col items-center text-center overflow-hidden">
-            {/* Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/10 blur-[120px] rounded-full -z-10 opacity-50" />
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 md:px-12 overflow-hidden py-20">
+            {/* Background elements removed in favor of HandShakeBackground */}
 
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-semibold mb-8"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-white/20 text-primary text-sm font-bold mb-10 shadow-xl"
             >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Expert Care for Your Recovery</span>
+                <Sparkles className="w-4 h-4 animate-pulse" />
+                <span>Expert Physiotherapy & Rehabilitation</span>
             </motion.div>
 
             <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-5xl md:text-8xl font-black mb-8 max-w-5xl leading-[1.1] tracking-tight"
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="text-6xl md:text-[7rem] font-black mb-10 max-w-6xl leading-[0.9] tracking-tighter"
             >
-                Restore Your Mobility <br />
-                <span className="gradient-text">Live Pain-Free</span>
+                Recover Faster. <br />
+                <span className="gradient-text">Move Better.</span>
             </motion.h1>
 
             <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-secondary text-lg md:text-xl max-w-2xl mb-12 leading-relaxed"
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-secondary text-xl md:text-2xl max-w-3xl mb-14 leading-relaxed font-medium"
             >
-                Personalized physiotherapy treatments designed to help you recover faster,
-                move better, and get back to doing what you love.
+                Personalized evidence-based treatments designed to restore your strength,
+                mobility, and quality of life. Led by <span className="text-white font-bold">Nadim Raza</span>.
             </motion.p>
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto items-center"
             >
-                <a href="#contact" className="group bg-primary hover:bg-blue-600 px-8 py-4 rounded-2xl font-bold transition-all shadow-2xl hover:shadow-primary/40 flex items-center justify-center gap-2">
+                <a href="#contact" className="group bg-primary text-primary-foreground px-10 py-5 rounded-2xl font-black transition-all shadow-2xl shadow-primary/40 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 text-lg">
                     Book Appointment
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
                 </a>
-                <a href="#services" className="glass hover:bg-white/5 px-8 py-4 rounded-2xl font-bold transition-all flex items-center justify-center">
-                    Our Services
+                <a href="#services" className="glass hover:bg-white/10 px-10 py-5 rounded-2xl font-black transition-all hover:scale-105 active:scale-95 text-lg">
+                    View Services
                 </a>
             </motion.div>
+
+            {/* Micro Trust Indicators */}
+            <div className="mt-20 flex flex-wrap justify-center gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="flex items-center gap-2 font-bold text-sm">
+                    <Activity className="w-5 h-5" />
+                    SPORTS REHAB
+                </div>
+                <div className="flex items-center gap-2 font-bold text-sm">
+                    <ShieldCheck className="w-5 h-5" />
+                    POST-SURGERY CARE
+                </div>
+            </div>
         </section>
     );
 };
 
 export default Hero;
+
