@@ -85,18 +85,20 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-            className="p-10 rounded-[2.5rem] glass-card border border-white/5 hover:border-primary/50 transition-colors duration-500 group relative"
+            className="p-10 rounded-[2.5rem] bg-white border border-slate-200 hover:border-primary/50 transition-all duration-500 group relative shadow-sm hover:shadow-2xl"
         >
             <div style={{ transform: "translateZ(50px)" }} className="relative">
-                <div className={`w-16 h-16 rounded-2xl ${feature.bg} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
+                <div className={`w-16 h-16 rounded-2xl ${feature.bg} flex items-center justify-center mb-8 shadow-lg shadow-black/5`}>
                     <feature.icon className={`w-8 h-8 ${feature.color}`} />
                 </div>
-                <h3 className="text-2xl font-black mb-4 tracking-tight text-foreground">{feature.title}</h3>
-                <p className="text-foreground/70 leading-relaxed text-base font-semibold">
+                <h3 className="text-2xl font-black mb-4 tracking-tight text-slate-900">{feature.title}</h3>
+                <p className="text-slate-700 leading-relaxed text-base font-bold">
                     {feature.description}
                 </p>
             </div>
 
+            {/* Subtle indicator always visible */}
+            <div className="absolute inset-x-10 bottom-0 h-1 bg-primary/20 rounded-full" />
             {/* Hover Glow */}
             <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full" />
         </motion.div>
