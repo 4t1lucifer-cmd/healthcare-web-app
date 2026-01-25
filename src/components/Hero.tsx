@@ -33,10 +33,10 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-secondary text-xl md:text-2xl max-w-3xl mb-14 leading-relaxed font-medium"
+                className="text-foreground/80 text-xl md:text-2xl max-w-3xl mb-14 leading-relaxed font-bold"
             >
                 Personalized evidence-based treatments designed to restore your strength,
-                mobility, and quality of life. Led by <span className="text-white font-bold">Nadim Raza</span>.
+                mobility, and quality of life. Led by <span className="text-primary font-black">Nadim Raza</span>.
             </motion.p>
 
             <motion.div

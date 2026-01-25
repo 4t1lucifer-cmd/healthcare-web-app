@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: 210 40% 98%;
+  --background: 240 10% 99%;
+  /* Very soft off-white/warm */
   --foreground: 222 47% 11%;
+  /* Deep Navy/Slate 950 */
 
   --primary: 173 80% 40%;
-  --primary-foreground: 210 40% 98%;
+  --primary-foreground: 240 10% 99%;
 
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 215 25% 27%;
+  /* Darker Slate for descriptions */
 
   --accent: 199 89% 48%;
-  --accent-foreground: 210 40% 98%;
+  --accent-foreground: 240 10% 99%;
 
   --card: 0 0% 100%;
   --card-foreground: 222 47% 11%;

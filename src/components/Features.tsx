@@ -91,8 +91,8 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
                 <div className={`w-16 h-16 rounded-2xl ${feature.bg} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-black/20`}>
                     <feature.icon className={`w-8 h-8 ${feature.color}`} />
                 </div>
-                <h3 className="text-2xl font-black mb-4 tracking-tight">{feature.title}</h3>
-                <p className="text-secondary leading-relaxed text-base font-medium">
+                <h3 className="text-2xl font-black mb-4 tracking-tight text-foreground">{feature.title}</h3>
+                <p className="text-foreground/70 leading-relaxed text-base font-semibold">
                     {feature.description}
                 </p>
             </div>
@@ -106,9 +106,10 @@ const FeatureCard = ({ feature, index }: { feature: typeof features[0], index: n
 const Features = () => {
     return (
         <section id="services" className="py-32 px-6 md:px-12 relative overflow-hidden scroll-mt-20">
-            {/* Background Accents */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full -z-10" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -z-10" />
+            {/* Background Accents with Mesh Gradient */}
+            <div className="mesh-gradient opacity-20" />
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full -z-10" />
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent/10 blur-[120px] rounded-full -z-10" />
 
             <div className="text-center mb-20">
                 <motion.h2
@@ -124,7 +125,7 @@ const Features = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-secondary text-lg md:text-xl max-w-2xl mx-auto font-medium"
+                    className="text-foreground/80 text-lg md:text-xl max-w-2xl mx-auto font-bold"
                 >
                     Providing comprehensive, evidence-based physiotherapy care for all types of performance and recovery needs.
                 </motion.p>
