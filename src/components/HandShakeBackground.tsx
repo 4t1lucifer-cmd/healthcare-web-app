@@ -83,15 +83,15 @@ const HandShakeBackground = () => {
         <>
             <canvas
                 ref={canvasRef}
-                className="fixed inset-0 w-full h-full -z-20 object-cover opacity-20 grayscale brightness-50"
+                className="fixed inset-0 w-full h-full -z-20 object-cover opacity-60 brightness-75 transition-opacity duration-1000"
             />
-            {/* Dark overlay for readability */}
-            <div className="fixed inset-0 bg-background/70 -z-10 backdrop-blur-[1px]" />
+            {/* Ambient overlay for readability and depth */}
+            <div className="fixed inset-0 bg-gradient-to-b from-background/20 via-background/60 to-background/90 -z-10 backdrop-blur-[0.5px]" />
 
-            {/* Progress indicator (optional, subtle) */}
+            {/* Syncing indicator */}
             {loaded < frames.length && (
-                <div className="fixed bottom-4 right-4 z-50 text-[10px] text-primary/30 font-mono tracking-widest uppercase">
-                    Syncing: {Math.round((loaded / frames.length) * 100)}%
+                <div className="fixed bottom-4 right-4 z-50 text-[10px] text-primary/40 font-black tracking-[0.2em] uppercase">
+                    Syncing Experience: {Math.round((loaded / frames.length) * 100)}%
                 </div>
             )}
         </>
