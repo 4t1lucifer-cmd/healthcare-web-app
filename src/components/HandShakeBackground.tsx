@@ -66,10 +66,10 @@ const HandShakeBackground = () => {
             }
 
             currentFrameRef.current = (currentFrameRef.current + 1) % frames.length;
-            // Slightly slower FPS for the reduced frame count (24 FPS is standard for cinema look)
+            // Slowed down FPS for a more realistic and calm background feel
             setTimeout(() => {
                 animationFrameId = requestAnimationFrame(render);
-            }, 41); // ~24 FPS
+            }, 80); // ~12 FPS for a smooth, slow-motion feel
         };
 
         render();
