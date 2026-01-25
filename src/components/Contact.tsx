@@ -117,9 +117,12 @@ const Contact = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="glass p-10 md:p-12 rounded-[3rem] shadow-2xl relative border border-white/10"
+                    className="bg-white p-10 md:p-12 rounded-[2.5rem] shadow-2xl shadow-primary/5 relative border border-primary/10 overflow-hidden"
                 >
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* Medical Theme Accent */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0 pointer-events-none" />
+
+                    <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                         {/* Honeypot field for spam prevention */}
                         <input
                             type="text"
@@ -139,12 +142,12 @@ const Contact = () => {
                                 <input
                                     required
                                     type="text"
-                                    placeholder="Alex Morgan"
-                                    className={`w-full bg-white/5 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all placeholder:text-white/20 font-medium`}
+                                    placeholder="e.g. Alex Morgan"
+                                    className={`w-full bg-slate-50 border ${errors.name ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 />
-                                {errors.name && <p className="text-red-400 text-xs font-bold ml-1">{errors.name}</p>}
+                                {errors.name && <p className="text-red-500 text-xs font-bold ml-1">{errors.name}</p>}
                             </div>
                             <div className="space-y-3">
                                 <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
@@ -154,11 +157,11 @@ const Contact = () => {
                                     required
                                     type="email"
                                     placeholder="alex@example.com"
-                                    className={`w-full bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all placeholder:text-white/20 font-medium`}
+                                    className={`w-full bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 />
-                                {errors.email && <p className="text-red-400 text-xs font-bold ml-1">{errors.email}</p>}
+                                {errors.email && <p className="text-red-500 text-xs font-bold ml-1">{errors.email}</p>}
                             </div>
                         </div>
 
@@ -170,7 +173,7 @@ const Contact = () => {
                                 <input
                                     required
                                     type="date"
-                                    className="w-full bg-white/5 border border-white/10 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all text-white/60 font-medium"
+                                    className="w-full bg-slate-50 border border-slate-200 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-foreground font-bold"
                                     value={formData.date}
                                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                                 />
@@ -182,7 +185,7 @@ const Contact = () => {
                                 <input
                                     required
                                     type="time"
-                                    className="w-full bg-white/5 border border-white/10 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all text-white/60 font-medium"
+                                    className="w-full bg-slate-50 border border-slate-200 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-foreground font-bold"
                                     value={formData.time}
                                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
                                 />
@@ -196,7 +199,7 @@ const Contact = () => {
                             <div className="relative">
                                 <select
                                     required
-                                    className="w-full bg-white/5 border border-white/10 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all text-white/60 appearance-none font-medium cursor-pointer"
+                                    className="w-full bg-slate-50 border border-slate-200 px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-foreground appearance-none font-bold cursor-pointer"
                                     value={formData.service}
                                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                                 >
@@ -204,10 +207,10 @@ const Contact = () => {
                                         "General Consultation", "Sports Injuries", "Post-Op Rehab",
                                         "Chronic Pain", "Manual Therapy", "Home Visits", "Ergonomics"
                                     ].map(s => (
-                                        <option key={s} value={s} className="bg-card text-white">{s}</option>
+                                        <option key={s} value={s} className="bg-white text-foreground">{s}</option>
                                     ))}
                                 </select>
-                                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-40 text-primary">
                                     ▼
                                 </div>
                             </div>
@@ -221,17 +224,17 @@ const Contact = () => {
                                 required
                                 rows={4}
                                 placeholder="Tell us about your condition..."
-                                className={`w-full bg-white/5 border ${errors.message ? 'border-red-500/50' : 'border-white/10'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all resize-none placeholder:text-white/20 font-medium`}
+                                className={`w-full bg-slate-50 border ${errors.message ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all resize-none placeholder:text-slate-400 font-bold text-foreground`}
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             />
-                            {errors.message && <p className="text-red-400 text-xs font-bold ml-1">{errors.message}</p>}
+                            {errors.message && <p className="text-red-500 text-xs font-bold ml-1">{errors.message}</p>}
                         </div>
 
                         <button
                             type="submit"
                             disabled={status === 'loading'}
-                            className="w-full bg-primary text-primary-foreground py-6 rounded-2xl font-black transition-all disabled:opacity-50 flex items-center justify-center gap-4 text-xl shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]"
+                            className="w-full bg-primary text-white py-6 rounded-2xl font-black transition-all disabled:opacity-50 flex items-center justify-center gap-4 text-xl shadow-xl shadow-primary/20 hover:scale-[1.01] active:scale-[0.99]"
                         >
                             {status === 'loading' ? (
                                 <>
@@ -252,7 +255,7 @@ const Contact = () => {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0 }}
-                                    className="flex items-center justify-center gap-3 text-green-400 font-black p-4 rounded-xl bg-green-400/10 border border-green-400/20"
+                                    className="flex items-center justify-center gap-3 text-green-600 font-black p-4 rounded-xl bg-green-50 border border-green-200"
                                 >
                                     <CheckCircle className="w-6 h-6" />
                                     Appointment request sent!
@@ -263,7 +266,7 @@ const Contact = () => {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0 }}
-                                    className="flex items-center justify-center gap-3 text-red-400 font-black p-4 rounded-xl bg-red-400/10 border border-red-400/20"
+                                    className="flex items-center justify-center gap-3 text-red-600 font-black p-4 rounded-xl bg-red-50 border border-red-200"
                                 >
                                     <AlertCircle className="w-6 h-6" />
                                     Submission failed. Please try again.
