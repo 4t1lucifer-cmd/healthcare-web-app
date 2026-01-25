@@ -17,7 +17,7 @@ const Hero = () => {
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-semibold mb-8"
             >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>The Future of Web Development is Here</span>
+                <span>Expert Care for Your Recovery</span>
             </motion.div>
 
             <motion.h1
@@ -26,8 +26,8 @@ const Hero = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-5xl md:text-8xl font-black mb-8 max-w-5xl leading-[1.1] tracking-tight"
             >
-                Build stunning sites <br />
-                <span className="gradient-text">effortlessly with AI</span>
+                Restore Your Mobility <br />
+                <span className="gradient-text">Live Pain-Free</span>
             </motion.h1>
 
             <motion.p
@@ -36,23 +36,23 @@ const Hero = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-secondary text-lg md:text-xl max-w-2xl mb-12 leading-relaxed"
             >
-                Empower your creativity with our advanced AI-driven platform.
-                Transform ideas into reality with production-ready code in seconds.
+                Personalized physiotherapy treatments designed to help you recover faster,
+                move better, and get back to doing what you love.
             </motion.p>
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:row gap-4 w-full sm:w-auto"
+                className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
             >
-                <button className="group bg-primary hover:bg-blue-600 px-8 py-4 rounded-2xl font-bold transition-all shadow-2xl hover:shadow-primary/40 flex items-center justify-center gap-2">
-                    Start for Free
+                <a href="#contact" className="group bg-primary hover:bg-blue-600 px-8 py-4 rounded-2xl font-bold transition-all shadow-2xl hover:shadow-primary/40 flex items-center justify-center gap-2">
+                    Book Appointment
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button className="glass hover:bg-white/5 px-8 py-4 rounded-2xl font-bold transition-all">
-                    View Demo
-                </button>
+                </a>
+                <a href="#services" className="glass hover:bg-white/5 px-8 py-4 rounded-2xl font-bold transition-all flex items-center justify-center">
+                    Our Services
+                </a>
             </motion.div>
         </section>
     );

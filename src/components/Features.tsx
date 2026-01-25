@@ -2,48 +2,48 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Shield, Cpu, Layout, Globe, Code } from 'lucide-react';
+import { Activity, HeartPulse, ShieldCheck, UserCheck, Globe, Accessibility } from 'lucide-react';
 
 const features = [
     {
-        title: 'Lightning Speed',
-        description: 'Optimized for the modern web with sub-second load times and global edge delivery.',
-        icon: Zap,
+        title: 'Sports Injuries',
+        description: 'Targeted recovery plans for athletes to return to peak performance safely and quickly.',
+        icon: Activity,
         color: 'text-yellow-400',
         bg: 'bg-yellow-400/10',
     },
     {
-        title: 'Enterprise Security',
-        description: 'Bult-in protection against global threats with automated SSL and edge security.',
-        icon: Shield,
+        title: 'Post-Op Rehab',
+        description: 'Specialized care to restore strength and mobility after surgical procedures.',
+        icon: HeartPulse,
         color: 'text-blue-400',
         bg: 'bg-blue-400/10',
     },
     {
-        title: 'AI Native',
-        description: 'Intelligent components that learn and adapt to your users behavior automatically.',
-        icon: Cpu,
+        title: 'Chronic Pain',
+        description: 'Comprehensive management strategies for long-term neck, back, and joint pain.',
+        icon: ShieldCheck,
         color: 'text-purple-400',
         bg: 'bg-purple-400/10',
     },
     {
-        title: 'Perfect Layouts',
-        description: 'Responsive by design. Your site looks stunning on every device, every time.',
-        icon: Layout,
+        title: 'Manual Therapy',
+        description: 'Hands-on techniques to manipulate joints and soft tissue for pain relief.',
+        icon: UserCheck,
         color: 'text-green-400',
         bg: 'bg-green-400/10',
     },
     {
-        title: 'Global Scale',
-        description: 'Deploy to hundred of locations worldwide with a single click or git push.',
+        title: 'Home Visits',
+        description: 'Professional physiotherapy services in the comfort and privacy of your home.',
         icon: Globe,
         color: 'text-pink-400',
         bg: 'bg-pink-400/10',
     },
     {
-        title: 'Clean Code',
-        description: 'Pure, maintainable TypeScript and React code that follows all best practices.',
-        icon: Code,
+        title: 'Ergonomics',
+        description: 'Expert advice on workplace setup to prevent strain and repetitive injuries.',
+        icon: Accessibility,
         color: 'text-cyan-400',
         bg: 'bg-cyan-400/10',
     },
@@ -51,13 +51,13 @@ const features = [
 
 const Features = () => {
     return (
-        <section id="features" className="py-24 px-6 md:px-12 relative overflow-hidden">
+        <section id="services" className="py-24 px-6 md:px-12 relative overflow-hidden scroll-mt-20">
             <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-accent/5 blur-[100px] rounded-full -z-10" />
 
             <div className="text-center mb-20">
-                <h2 className="text-3xl md:text-5xl font-bold mb-6">Designed for Performance</h2>
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">Our Services</h2>
                 <p className="text-secondary max-w-xl mx-auto">
-                    Every tool you need to build, scale, and manage your modern web presence with confidence.
+                    We offer a wide range of physiotherapy services tailored to your specific needs and goals.
                 </p>
             </div>
 

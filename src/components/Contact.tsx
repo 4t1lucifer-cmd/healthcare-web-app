@@ -2,10 +2,17 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Loader2, Globe } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Loader2, Globe, Activity } from 'lucide-react';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+        date: '',
+        time: '',
+        service: 'General Consultation'
+    });
     const [status, setStatus] = useState<null | 'loading' | 'success' | 'error'>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -21,7 +28,14 @@ const Contact = () => {
 
             if (response.ok) {
                 setStatus('success');
-                setFormData({ name: '', email: '', message: '' });
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: '',
+                    date: '',
+                    time: '',
+                    service: 'General Consultation'
+                });
                 setTimeout(() => setStatus(null), 5000);
             } else {
                 setStatus('error');
@@ -32,29 +46,29 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-24 px-6 md:px-12 max-w-5xl mx-auto">
+        <section id="contact" className="py-24 px-6 md:px-12 max-w-5xl mx-auto scroll-mt-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
                     <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
-                        Ready to <span className="gradient-text">ignite</span> your project?
+                        Start Your <span className="gradient-text">Recovery</span> Journey
                     </h2>
                     <p className="text-secondary text-lg mb-12 leading-relaxed">
-                        Our team is here to help you navigate the future of the web.
-                        Fill out the form and we'll be in touch within 24 hours.
+                        Our expert physiotherapists are ready to help you move better and live pain-free.
+                        Book your consultation today and take the first step towards health.
                     </p>
 
                     <div className="space-y-6">
                         <div className="flex items-center gap-4 text-secondary">
                             <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                                <Globe className="w-5 h-5" />
+                                <Activity className="w-5 h-5 text-primary" />
                             </div>
-                            <span>Global Support 24/7</span>
+                            <span>Personalized Treatment Plans</span>
                         </div>
                         <div className="flex items-center gap-4 text-secondary">
                             <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
                                 <CheckCircle className="w-5 h-5 text-green-400" />
                             </div>
-                            <span>99.9% Uptime Guarantee</span>
+                            <span>Professional Medical Expertise</span>
                         </div>
                     </div>
                 </div>
@@ -88,12 +102,53 @@ const Contact = () => {
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             />
                         </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-sm font-semibold text-secondary ml-1">Preferred Date</label>
+                                <input
+                                    required
+                                    type="date"
+                                    className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white/60"
+                                    value={formData.date}
+                                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-semibold text-secondary ml-1">Preferred Time</label>
+                                <input
+                                    required
+                                    type="time"
+                                    className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white/60"
+                                    value={formData.time}
+                                    onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                                />
+                            </div>
+                        </div>
+
                         <div className="space-y-2">
-                            <label className="text-sm font-semibold text-secondary ml-1">Project Details</label>
+                            <label className="text-sm font-semibold text-secondary ml-1">Select Service</label>
+                            <select
+                                required
+                                className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-white/60 appearance-none"
+                                value={formData.service}
+                                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                            >
+                                <option value="General Consultation" className="bg-card">General Consultation</option>
+                                <option value="Sports Injuries" className="bg-card">Sports Injuries</option>
+                                <option value="Post-Op Rehab" className="bg-card">Post-Op Rehab</option>
+                                <option value="Chronic Pain" className="bg-card">Chronic Pain</option>
+                                <option value="Manual Therapy" className="bg-card">Manual Therapy</option>
+                                <option value="Home Visits" className="bg-card">Home Visits</option>
+                                <option value="Ergonomics" className="bg-card">Ergonomics</option>
+                            </select>
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-semibold text-secondary ml-1">Message / Symptoms</label>
                             <textarea
                                 required
                                 rows={4}
-                                placeholder="Tell us about what you're building..."
+                                placeholder="Briefly describe your condition or symptoms..."
                                 className="w-full bg-white/5 border border-white/10 px-5 py-4 rounded-2xl focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none placeholder:text-white/20"
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
