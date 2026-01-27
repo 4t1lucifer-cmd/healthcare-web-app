@@ -47,13 +47,13 @@ const Awareness = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:border-[#1DB4A1]/30 hover:shadow-lg transition-all group"
+                        className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:bg-[#344230] hover:border-[#344230] hover:shadow-xl transition-all duration-300 group cursor-pointer"
                     >
-                        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                            <item.icon className="w-7 h-7 text-[#1DB4A1]" />
+                        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300">
+                            <item.icon className="w-7 h-7 text-[#1DB4A1] group-hover:text-white transition-colors" />
                         </div>
-                        <h3 className="text-xl font-bold mb-3 text-slate-900">{item.title}</h3>
-                        <p className="text-slate-500 leading-relaxed">{item.desc}</p>
+                        <h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-white transition-colors">{item.title}</h3>
+                        <p className="text-slate-500 leading-relaxed group-hover:text-white/80 transition-colors">{item.desc}</p>
                     </motion.div>
                 ))}
             </div>
