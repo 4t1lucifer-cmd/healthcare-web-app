@@ -1,8 +1,18 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, HeartPulse, ShieldCheck, UserCheck, Globe, Accessibility, X, CheckCircle, ChevronRight, Star, ArrowLeft, Calendar } from 'lucide-react';
+// ... (rest of imports are fine, just changed top)
+
+// ... (features data - same)
+
+// Inside Features component loop
+// Replace Image rendering logic
+// Note: Since I can't replace the whole file easily due to length, I will use targeted replacement or multi_replace.
+// I'll assume the user wants the whole file logical update.
+// Actually, simple replace of the import and the image tags is safest.
 
 // Data reused with slight updates for visuals
 const features = [
@@ -241,12 +251,19 @@ const Features = () => {
 
                         {/* LEFT: IMAGE HERO (Scrollable on mobile, Fixed on Desktop) */}
                         <div className="w-full md:w-1/2 h-[45vh] md:h-full relative flex-shrink-0 bg-slate-100">
-                            <motion.img
-                                layoutId={`image-${selectedFeature.id}`}
-                                src={selectedFeature.image}
-                                alt={selectedFeature.title}
-                                className="w-full h-full object-cover"
-                            />
+                            <motion.div
+                                layoutId={`image-container-${selectedFeature.id}`}
+                                className="w-full h-full relative"
+                            >
+                                <Image
+                                    src={selectedFeature.image}
+                                    alt={selectedFeature.title}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                            </motion.div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:hidden" />
 
                             {/* Mobile Title Overlay */}
