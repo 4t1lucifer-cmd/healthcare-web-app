@@ -48,6 +48,11 @@ export async function POST(req: Request) {
             },
         });
 
+        // Generate Confirmation Link (Assuming localhost for dev, needs domain in prod)
+        // In production, use `process.env.NEXT_PUBLIC_BASE_URL` or req.headers.get('host')
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+        const confirmUrl = `${baseUrl}/api/confirm?name=${encodeURIComponent(name)}&mobile=${encodeURIComponent(mobile)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
+
         const mailOptions = {
             from: '"PhysioCare Booking" <bookings@physiocare.com>',
             to: 'nadimraza0123@gmail.com',
@@ -67,6 +72,13 @@ export async function POST(req: Request) {
                         <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; line-height: 1.6;">
                             ${sanitizedMessage.replace(/\n/g, '<br/>')}
                         </div>
+                    </div>
+                    
+                    <div style="margin-top: 32px; text-align: center;">
+                        <a href="${confirmUrl}" style="background-color: #0d9488; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
+                            ✅ Confirm Appointment & Send SMS
+                        </a>
+                        <p style="margin-top: 12px; font-size: 13px; color: #64748b;">Clicking this will send a confirmation SMS to the patient.</p>
                     </div>
                 </div>
             `,
