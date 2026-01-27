@@ -140,13 +140,12 @@ const Contact = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-3">
                                 <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <User className="w-4 h-4 text-primary" /> Full Name
+                                    <User className="w-4 h-4 text-primary" /> Your Name
                                 </label>
                                 <input
                                     required
                                     type="text"
-                                    placeholder="e.g. Alex Morgan"
-                                    className={`w-full bg-slate-50 border ${errors.name ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
+                                    className={`w-full bg-slate-50 border ${errors.name ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground`}
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 />
@@ -154,13 +153,12 @@ const Contact = () => {
                             </div>
                             <div className="space-y-3">
                                 <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <Phone className="w-4 h-4 text-primary" /> Mobile Number <span className="text-red-500">*</span>
+                                    <Phone className="w-4 h-4 text-primary" /> Phone Number <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     required
                                     type="tel"
-                                    placeholder="9876543210"
-                                    className={`w-full bg-slate-50 border ${errors.mobile ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
+                                    className={`w-full bg-slate-50 border ${errors.mobile ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground`}
                                     value={formData.mobile}
                                     onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                                 />
@@ -174,8 +172,7 @@ const Contact = () => {
                             </label>
                             <input
                                 type="email"
-                                placeholder="alex@example.com"
-                                className={`w-full bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
+                                className={`w-full bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground`}
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             />
@@ -185,7 +182,7 @@ const Contact = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-3">
                                 <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <Calendar className="w-4 h-4 text-primary" /> Preferred Date
+                                    <Calendar className="w-4 h-4 text-primary" /> Appointment Date
                                 </label>
                                 <input
                                     required
@@ -197,7 +194,7 @@ const Contact = () => {
                             </div>
                             <div className="space-y-3">
                                 <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <Clock className="w-4 h-4 text-primary" /> Preferred Time
+                                    <Clock className="w-4 h-4 text-primary" /> Appointment Time
                                 </label>
                                 <input
                                     required
@@ -235,13 +232,12 @@ const Contact = () => {
 
                         <div className="space-y-3">
                             <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
-                                <MessageSquare className="w-4 h-4 text-primary" /> Message / Symptoms
+                                <MessageSquare className="w-4 h-4 text-primary" /> Your Message
                             </label>
                             <textarea
                                 required
                                 rows={4}
-                                placeholder="Tell us about your condition..."
-                                className={`w-full bg-slate-50 border ${errors.message ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all resize-none placeholder:text-slate-400 font-bold text-foreground`}
+                                className={`w-full bg-slate-50 border ${errors.message ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all resize-none font-bold text-foreground`}
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             />
