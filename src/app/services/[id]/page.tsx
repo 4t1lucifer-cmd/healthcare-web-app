@@ -18,12 +18,22 @@ export default function ServicePage({ params }: { params: Promise<{ id: string }
     return (
         <div className="min-h-screen bg-white">
             {/* Header/Hero Section */}
-            <div className={`relative w-full py-24 px-6 md:px-12 bg-gradient-to-b ${service.gradient} flex flex-col items-center justify-center text-center border-b border-slate-100/50`}>
+            <div className="relative w-full py-24 px-6 md:px-12 flex flex-col items-center justify-center text-center border-b border-slate-100/50 overflow-hidden">
+                {/* Reusing pic1.jpeg for cached, reliable, zero-load background */}
+                <div className="absolute inset-0 -z-20">
+                    <img
+                        src="/pic1.jpeg"
+                        alt="Service Background"
+                        className="w-full h-full object-cover opacity-100"
+                    />
+                </div>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/70 -z-10" />
 
                 {/* Back Button */}
                 <button
                     onClick={() => router.back()}
-                    className="absolute top-8 left-8 z-50 p-3 bg-white/50 backdrop-blur-md border border-white/20 text-slate-800 rounded-full hover:bg-white transition-colors flex items-center gap-2 font-bold px-4"
+                    className="absolute top-8 left-8 z-50 p-3 bg-white/20 backdrop-blur-md border border-white/20 text-white rounded-full hover:bg-white/40 transition-colors flex items-center gap-2 font-bold px-4"
                 >
                     <ArrowLeft className="w-5 h-5" />
                     <span className="hidden md:inline">Back</span>
@@ -33,16 +43,16 @@ export default function ServicePage({ params }: { params: Promise<{ id: string }
                 <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className={`w-24 h-24 rounded-3xl ${service.bg} flex items-center justify-center mb-8 shadow-xl shadow-black/5`}
+                    className={`w-24 h-24 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-8 shadow-xl shadow-black/5`}
                 >
-                    <service.icon className={`w-12 h-12 ${service.color}`} />
+                    <service.icon className={`w-12 h-12 text-white`} />
                 </motion.div>
 
                 <motion.h1
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 max-w-4xl tracking-tight leading-tight"
+                    className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 max-w-4xl tracking-tight leading-tight drop-shadow-lg"
                 >
                     {service.title}
                 </motion.h1>
@@ -51,7 +61,7 @@ export default function ServicePage({ params }: { params: Promise<{ id: string }
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="text-lg md:text-xl font-medium text-slate-500 uppercase tracking-widest"
+                    className="text-lg md:text-xl font-bold text-white/80 uppercase tracking-widest drop-shadow-md"
                 >
                     {service.tagline}
                 </motion.p>

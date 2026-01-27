@@ -87,19 +87,28 @@ const Features = () => {
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
                     >
                         {/* Header Gradient Area - Replaces Image */}
-                        <div className={`relative w-full py-16 px-6 md:px-12 bg-gradient-to-b ${selectedFeature.gradient} flex flex-col items-center justify-center text-center border-b border-slate-100/50`}>
+                        <div className="relative w-full py-16 px-6 md:px-12 flex flex-col items-center justify-center text-center border-b border-slate-100/50 overflow-hidden">
+                            {/* Reusing pic1.jpeg */}
+                            <div className="absolute inset-0 -z-20">
+                                <img
+                                    src="/pic1.jpeg"
+                                    alt="Service Background"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div className="absolute inset-0 bg-black/70 -z-10" />
 
                             {/* Close Buttons */}
                             <button
                                 onClick={() => setSelectedFeature(null)}
-                                className="absolute top-4 left-4 z-50 p-3 bg-white/50 backdrop-blur-md border border-white/20 text-slate-800 rounded-full hover:bg-white transition-colors md:hidden"
+                                className="absolute top-4 left-4 z-50 p-3 bg-white/20 backdrop-blur-md border border-white/20 text-white rounded-full hover:bg-white/40 transition-colors md:hidden"
                             >
                                 <ArrowLeft className="w-6 h-6" />
                             </button>
 
                             <button
                                 onClick={() => setSelectedFeature(null)}
-                                className="absolute top-6 right-6 z-50 p-2 bg-white/50 hover:bg-white text-slate-800 rounded-full transition-colors hidden md:block shadow-sm"
+                                className="absolute top-6 right-6 z-50 p-2 bg-white/20 hover:bg-white/40 text-white rounded-full transition-colors hidden md:block shadow-sm backdrop-blur-md border border-white/10"
                             >
                                 <X className="w-8 h-8" />
                             </button>
@@ -109,16 +118,16 @@ const Features = () => {
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className={`w-20 h-20 md:w-24 md:h-24 rounded-3xl ${selectedFeature.bg} flex items-center justify-center mb-6 shadow-xl shadow-black/5`}
+                                className={`w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-6 shadow-xl shadow-black/5`}
                             >
-                                <selectedFeature.icon className={`w-10 h-10 md:w-12 md:h-12 ${selectedFeature.color}`} />
+                                <selectedFeature.icon className={`w-10 h-10 md:w-12 md:h-12 text-white`} />
                             </motion.div>
 
                             <motion.h2
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.3 }}
-                                className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4 max-w-4xl tracking-tight leading-tight"
+                                className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 max-w-4xl tracking-tight leading-tight drop-shadow-lg"
                             >
                                 {selectedFeature.title}
                             </motion.h2>
@@ -127,7 +136,7 @@ const Features = () => {
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.4 }}
-                                className="text-lg md:text-xl font-bold text-slate-500 uppercase tracking-widest"
+                                className="text-lg md:text-xl font-bold text-white/80 uppercase tracking-widest drop-shadow-md"
                             >
                                 {selectedFeature.tagline}
                             </motion.p>
