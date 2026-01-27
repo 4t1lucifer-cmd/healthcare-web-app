@@ -42,7 +42,7 @@ export default function ServicePage({ params }: { params: Promise<{ id: string }
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-6 max-w-5xl tracking-tight leading-tight"
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 max-w-4xl tracking-tight leading-tight"
                 >
                     {service.title}
                 </motion.h1>
@@ -51,15 +51,15 @@ export default function ServicePage({ params }: { params: Promise<{ id: string }
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="text-xl md:text-2xl font-bold text-slate-500 uppercase tracking-widest"
+                    className="text-lg md:text-xl font-medium text-slate-500 uppercase tracking-widest"
                 >
                     {service.tagline}
                 </motion.p>
             </div>
 
             {/* Layout Content */}
-            <div className="w-full max-w-5xl mx-auto py-16 px-6 md:px-12">
-                <p className="text-2xl md:text-3xl font-medium text-slate-600 mb-16 leading-relaxed max-w-4xl mx-auto text-left">
+            <div className="w-full max-w-4xl mx-auto py-12 px-6 md:px-12">
+                <p className="text-lg md:text-xl font-medium text-slate-600 mb-12 leading-relaxed text-left">
                     {service.fullDescription}
                 </p>
 
