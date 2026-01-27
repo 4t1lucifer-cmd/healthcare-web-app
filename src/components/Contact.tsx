@@ -116,10 +116,7 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                <div
                     className="bg-white p-10 md:p-12 rounded-[2.5rem] shadow-2xl shadow-primary/5 relative border border-primary/10 overflow-hidden"
                 >
                     {/* Medical Theme Accent */}
