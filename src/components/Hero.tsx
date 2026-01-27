@@ -4,7 +4,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Activity, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 // ... (keep implies I need to insert import at top, but tool replaces contiguous block. I'll add import separately or use full file replace if contiguous blocks are far apart. 
 // Hero.tsx has import at top. I will do import first.)
 
@@ -78,13 +77,13 @@ const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto items-center"
             >
-                <Link href="/appointment" className="group bg-[#1DB4A1] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(29,180,161,0.3)] hover:shadow-[0_0_30px_rgba(29,180,161,0.5)] hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 text-lg border border-[#1DB4A1]">
+                <a href="/appointment" className="group bg-[#1DB4A1] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(29,180,161,0.3)] hover:shadow-[0_0_30px_rgba(29,180,161,0.5)] hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 text-lg border border-[#1DB4A1]">
                     Book Appointment
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link href="#services" className="bg-white/90 text-black hover:bg-white px-8 py-4 rounded-xl font-bold transition-all hover:scale-[1.02] active:scale-[0.98] text-lg border border-white/50 backdrop-blur-md shadow-lg">
+                </a>
+                <a href="#services" className="bg-white/90 text-black hover:bg-white px-8 py-4 rounded-xl font-bold transition-all hover:scale-[1.02] active:scale-[0.98] text-lg border border-white/50 backdrop-blur-md shadow-lg">
                     View Services
-                </Link>
+                </a>
             </motion.div>
 
             {/* Trust Indicators */}
