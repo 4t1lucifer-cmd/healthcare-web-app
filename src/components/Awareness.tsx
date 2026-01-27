@@ -92,7 +92,7 @@ const Awareness = () => {
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.2 + i * 0.1 }}
-                                className="bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/10 flex items-center gap-6 shadow-lg hover:bg-black/50 transition-colors"
+                                className="bg-black/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 flex items-center gap-6 shadow-lg hover:bg-black/20 transition-colors"
                             >
                                 <div className="w-12 h-12 bg-[#1DB4A1]/20 rounded-full flex items-center justify-center flex-shrink-0 border border-[#1DB4A1]/30">
                                     <ex.icon className="w-6 h-6 text-[#1DB4A1]" />
