@@ -48,18 +48,24 @@ const Navbar = () => {
         {/* Persistent CTA Button */}
         <a
           href="/appointment"
-          className="hidden sm:flex bg-primary text-white px-6 py-3 rounded-full font-black text-sm uppercase tracking-wide shadow-lg shadow-primary/20 items-center gap-2 transition-transform hover:scale-105 active:scale-95"
+          onClick={(e) => {
+            if (typeof window !== 'undefined') window.location.href = '/appointment';
+          }}
+          className="hidden sm:flex bg-primary text-white px-6 py-3 rounded-full font-black text-sm uppercase tracking-wide shadow-lg shadow-primary/20 items-center gap-2 transition-transform hover:scale-105 active:scale-95 cursor-pointer"
         >
-          <Calendar className="w-4 h-4" />
+          <Calendar className="w-4 h-4 pointer-events-none" />
           <span>Book Appointment</span>
         </a>
 
         {/* Mobile Icon-only CTA (visible only on small screens) */}
         <a
           href="/appointment"
-          className="sm:hidden bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/20 flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
+          onClick={(e) => {
+            if (typeof window !== 'undefined') window.location.href = '/appointment';
+          }}
+          className="sm:hidden bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/20 flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer relative z-[70]"
         >
-          <Calendar className="w-5 h-5" />
+          <Calendar className="w-5 h-5 pointer-events-none" />
         </a>
 
         {/* Menu Toggle & Dropdown Container */}
