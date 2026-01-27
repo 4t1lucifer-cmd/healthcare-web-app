@@ -7,15 +7,16 @@ import Image from 'next/image';
 
 const Hero = () => {
     return (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 md:px-12 overflow-hidden py-20">
+        <section className="relative min-h-[85vh] md:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 md:px-12 overflow-hidden py-16 md:py-20">
             {/* Banner Background Image */}
             <div className="absolute inset-0 -z-20">
                 <Image
                     src="/pic1.jpeg"
                     alt="Physiotherapy Banner"
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
                     priority
+                    sizes="100vw"
                 />
             </div>
 
@@ -25,7 +26,7 @@ const Hero = () => {
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white text-sm font-bold mb-8 shadow-xl"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white text-xs md:text-sm font-bold mb-6 md:mb-8 shadow-xl"
             >
                 <Sparkles className="w-4 h-4 text-[#1DB4A1]" />
                 <span className="tracking-wide">Expert Physiotherapy & Rehabilitation</span>
@@ -35,7 +36,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl md:text-7xl lg:text-[6rem] font-black mb-8 max-w-5xl leading-[1.1] md:leading-[1] tracking-tight text-white drop-shadow-2xl"
+                className="text-4xl md:text-7xl lg:text-[6rem] font-black mb-6 md:mb-8 max-w-5xl leading-[1.1] md:leading-[1] tracking-tight text-white drop-shadow-2xl"
             >
                 Recover Faster. <br />
                 <span className="text-[#2DD4BF] drop-shadow-md">Move Better.</span>
