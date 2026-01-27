@@ -145,7 +145,8 @@ const Contact = () => {
                                 <input
                                     required
                                     type="text"
-                                    className={`w-full bg-slate-50 border ${errors.name ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground`}
+                                    placeholder="Your Name"
+                                    className={`w-full bg-slate-50 border ${errors.name ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground placeholder:text-slate-400`}
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 />
@@ -158,7 +159,8 @@ const Contact = () => {
                                 <input
                                     required
                                     type="tel"
-                                    className={`w-full bg-slate-50 border ${errors.mobile ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground`}
+                                    placeholder="Mobile Number"
+                                    className={`w-full bg-slate-50 border ${errors.mobile ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground placeholder:text-slate-400`}
                                     value={formData.mobile}
                                     onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                                 />
@@ -172,7 +174,8 @@ const Contact = () => {
                             </label>
                             <input
                                 type="email"
-                                className={`w-full bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground`}
+                                placeholder="Email Address"
+                                className={`w-full bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-foreground placeholder:text-slate-400`}
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             />
@@ -237,7 +240,8 @@ const Contact = () => {
                             <textarea
                                 required
                                 rows={4}
-                                className={`w-full bg-slate-50 border ${errors.message ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all resize-none font-bold text-foreground`}
+                                placeholder="Message / Symptoms"
+                                className={`w-full bg-slate-50 border ${errors.message ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all resize-none font-bold text-foreground placeholder:text-slate-400`}
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             />
