@@ -40,8 +40,7 @@ const Footer = () => {
                     <ul className="space-y-3 text-sm">
                         {['Home', 'About Us', 'Services', 'Testimonials', 'Book Appointment'].map((link) => (
                             <li key={link}>
-                                <a href="#" className="hover:text-white/80 transition-colors flex items-center gap-2 group text-white/90 font-medium">
-                                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-white" />
+                                <a href="#" className="hover:text-white/80 transition-colors block text-white/90 font-medium hover:translate-x-1 duration-300">
                                     {link}
                                 </a>
                             </li>
@@ -55,8 +54,7 @@ const Footer = () => {
                     <ul className="space-y-3 text-sm">
                         {['Sports Injury Rehab', 'Post-Surgery Recovery', 'Chronic Pain Mgmt', 'Chiropractic Care', 'Home Physiotherapy'].map((service) => (
                             <li key={service}>
-                                <a href="#" className="hover:text-white/80 transition-colors flex items-center gap-2 group text-white/90 font-medium">
-                                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-white" />
+                                <a href="#" className="hover:text-white/80 transition-colors block text-white/90 font-medium hover:translate-x-1 duration-300">
                                     {service}
                                 </a>
                             </li>
