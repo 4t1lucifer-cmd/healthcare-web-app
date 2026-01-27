@@ -1,20 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, HeartPulse, ShieldCheck, UserCheck, Globe, Accessibility, X, CheckCircle, ChevronRight, Star, ArrowLeft, Calendar } from 'lucide-react';
-// ... (rest of imports are fine, just changed top)
 
-// ... (features data - same)
-
-// Inside Features component loop
-// Replace Image rendering logic
-// Note: Since I can't replace the whole file easily due to length, I will use targeted replacement or multi_replace.
-// I'll assume the user wants the whole file logical update.
-// Actually, simple replace of the import and the image tags is safest.
-
-// Data reused with slight updates for visuals
 const features = [
     {
         id: 'sports-injury',
@@ -25,7 +14,7 @@ const features = [
         icon: Activity,
         color: 'text-orange-600',
         bg: 'bg-orange-50',
-        image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1200',
+        gradient: 'from-orange-50 to-white',
         subServices: [
             'ACL & Meniscus Rehab',
             'Rotator Cuff Strengthening',
@@ -54,7 +43,7 @@ const features = [
         icon: HeartPulse,
         color: 'text-blue-600',
         bg: 'bg-blue-50',
-        image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
+        gradient: 'from-blue-50 to-white',
         subServices: [
             'Total Knee Replacement (TKR)',
             'Hip Replacement Rehab',
@@ -78,7 +67,7 @@ const features = [
         icon: ShieldCheck,
         color: 'text-purple-600',
         bg: 'bg-purple-50',
-        image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=1200',
+        gradient: 'from-purple-50 to-white',
         subServices: [
             'Sciatica Nerve Decompression',
             'Cervical Spondylosis Care',
@@ -102,7 +91,7 @@ const features = [
         icon: UserCheck,
         color: 'text-emerald-600',
         bg: 'bg-emerald-50',
-        image: 'https://images.unsplash.com/photo-1600334019640-51026cf301d3?auto=format&fit=crop&q=80&w=1200',
+        gradient: 'from-emerald-50 to-white',
         subServices: [
             'Spinal Manipulation',
             'Myofascial Release (MFR)',
@@ -126,7 +115,7 @@ const features = [
         icon: Globe,
         color: 'text-rose-600',
         bg: 'bg-rose-50',
-        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
+        gradient: 'from-rose-50 to-white',
         subServices: [
             'Stroke/Paralysis Rehab',
             'Geriatric Mobilization',
@@ -150,7 +139,7 @@ const features = [
         icon: Accessibility,
         color: 'text-cyan-600',
         bg: 'bg-cyan-50',
-        image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200',
+        gradient: 'from-cyan-50 to-white',
         subServices: [
             'Workstation Setup',
             'Tech-Neck Correction',
@@ -222,125 +211,115 @@ const Features = () => {
                 ))}
             </div>
 
-            {/* Immersive Product Page Modal */}
+            {/* Immersive Text-Focused Modal */}
             <AnimatePresence>
                 {selectedFeature && (
                     <motion.div
-                        className="fixed inset-0 z-[100] bg-white flex flex-col md:flex-row overflow-hidden"
+                        className="fixed inset-0 z-[100] bg-white flex flex-col overflow-hidden"
                         initial={{ opacity: 0, y: '100%' }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: '100%' }}
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
                     >
-                        {/* CLOSE BUTTON (Mobile Fixed) */}
-                        <button
-                            onClick={() => setSelectedFeature(null)}
-                            className="absolute top-4 left-4 z-50 p-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full hover:bg-white/20 transition-colors md:hidden"
-                        >
-                            <ArrowLeft className="w-6 h-6" />
-                        </button>
+                        {/* Header Gradient Area - Replaces Image */}
+                        <div className={`relative w-full py-16 px-6 md:px-12 bg-gradient-to-b ${selectedFeature.gradient} flex flex-col items-center justify-center text-center border-b border-slate-100/50`}>
 
-                        <button
-                            onClick={() => setSelectedFeature(null)}
-                            className="absolute top-6 right-6 z-50 p-2 bg-black/5 hover:bg-black/10 text-slate-800 rounded-full transition-colors hidden md:block"
-                        >
-                            <X className="w-8 h-8" />
-                        </button>
-
-
-                        {/* LEFT: IMAGE HERO (Scrollable on mobile, Fixed on Desktop) */}
-                        <div className="w-full md:w-1/2 h-[45vh] md:h-full relative flex-shrink-0 bg-slate-100">
-                            <div
-                                className="w-full h-full relative"
+                            {/* Close Buttons */}
+                            <button
+                                onClick={() => setSelectedFeature(null)}
+                                className="absolute top-4 left-4 z-50 p-3 bg-white/50 backdrop-blur-md border border-white/20 text-slate-800 rounded-full hover:bg-white transition-colors md:hidden"
                             >
-                                <Image
-                                    src={selectedFeature.image}
-                                    alt={selectedFeature.title}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                            </div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:hidden" />
+                                <ArrowLeft className="w-6 h-6" />
+                            </button>
 
-                            {/* Mobile Title Overlay */}
-                            <div className="absolute bottom-6 left-6 right-6 md:hidden">
-                                <span className="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full uppercase tracking-wider mb-2 inline-block">
-                                    PhysioCare Service
-                                </span>
-                                <h2 className="text-2xl font-black text-white leading-tight">{selectedFeature.title}</h2>
-                            </div>
+                            <button
+                                onClick={() => setSelectedFeature(null)}
+                                className="absolute top-6 right-6 z-50 p-2 bg-white/50 hover:bg-white text-slate-800 rounded-full transition-colors hidden md:block shadow-sm"
+                            >
+                                <X className="w-8 h-8" />
+                            </button>
+
+                            {/* Service Icon Hero */}
+                            <motion.div
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className={`w-20 h-20 md:w-24 md:h-24 rounded-3xl ${selectedFeature.bg} flex items-center justify-center mb-6 shadow-xl shadow-black/5`}
+                            >
+                                <selectedFeature.icon className={`w-10 h-10 md:w-12 md:h-12 ${selectedFeature.color}`} />
+                            </motion.div>
+
+                            <motion.h2
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.3 }}
+                                className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-4 max-w-4xl tracking-tight leading-tight"
+                            >
+                                {selectedFeature.title}
+                            </motion.h2>
+
+                            <motion.p
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.4 }}
+                                className="text-lg md:text-xl font-bold text-slate-500 uppercase tracking-widest"
+                            >
+                                {selectedFeature.tagline}
+                            </motion.p>
                         </div>
 
-                        {/* RIGHT: CONTENT SCROLLABLE */}
-                        <div className="w-full md:w-1/2 h-full flex flex-col bg-white overflow-y-auto relative">
+                        {/* Layout Content */}
+                        <div className="flex-1 overflow-y-auto w-full max-w-5xl mx-auto">
                             <div className="p-6 md:p-12 pb-32">
-                                {/* Desktop Breadcrumb/Badge */}
-                                <div className="hidden md:flex items-center gap-2 mb-6 text-sm font-bold text-slate-400 uppercase tracking-widest">
-                                    <span className="text-primary">Services</span>
-                                    <ChevronRight className="w-4 h-4" />
-                                    <span>{selectedFeature.id.replace('-', ' ')}</span>
-                                </div>
-
-                                <motion.h2
-                                    className="hidden md:block text-4xl lg:text-5xl font-black text-slate-900 mb-4 leading-tight"
-                                >
-                                    {selectedFeature.title}
-                                </motion.h2>
-
-                                <p className="text-lg md:text-xl font-medium text-slate-500 mb-8 md:mb-10 leading-relaxed">
+                                <p className="text-xl md:text-2xl font-medium text-slate-600 mb-12 leading-relaxed text-center md:text-left max-w-3xl mx-auto md:mx-0">
                                     {selectedFeature.fullDescription}
                                 </p>
 
-                                <div className="h-px w-full bg-slate-100 mb-10" />
-
-                                {/* Sub Services Grid */}
-                                <div className="mb-12">
-                                    <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                                        <Activity className="w-5 h-5 text-primary" /> What We Treat
-                                    </h3>
-                                    <div className="grid grid-cols-1 gap-4">
-                                        {selectedFeature.subServices.map((sub, idx) => (
-                                            <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-colors">
-                                                <div className="mt-1 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                                                    <CheckCircle className="w-3 h-3 text-green-600" />
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                    {/* Sub Services */}
+                                    <div>
+                                        <h3 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2 uppercase tracking-wider">
+                                            <Activity className="w-5 h-5 text-primary" /> What We Treat
+                                        </h3>
+                                        <div className="grid grid-cols-1 gap-3">
+                                            {selectedFeature.subServices.map((sub, idx) => (
+                                                <div key={idx} className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-colors">
+                                                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
+                                                    <h4 className="font-bold text-slate-800 text-lg">{sub}</h4>
                                                 </div>
-                                                <div>
-                                                    <h4 className="font-bold text-slate-800 text-base">{sub}</h4>
-                                                    <p className="text-slate-400 text-sm">Specialized protocol available.</p>
-                                                </div>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Patient Stories */}
-                                <div className="mb-8">
-                                    <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                                        <Star className="w-5 h-5 text-yellow-500" /> Success Stories
-                                    </h3>
-                                    <div className="bg-yellow-50/50 rounded-2xl p-6 border border-yellow-100/50">
-                                        {selectedFeature.patientStories.map((story, idx) => (
-                                            <div key={idx} className="mb-6 last:mb-0">
-                                                <p className="text-slate-700 italic text-lg mb-3 leading-relaxed">"{story.story}"</p>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center font-bold text-yellow-700 text-xs">
-                                                        {story.name.charAt(0)}
-                                                    </div>
-                                                    <div>
-                                                        <p className="font-bold text-slate-900 text-sm">{story.name}</p>
-                                                        <p className="text-slate-500 text-xs uppercase font-bold">{story.role}</p>
+                                    {/* Patient Stories */}
+                                    <div>
+                                        <h3 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2 uppercase tracking-wider">
+                                            <Star className="w-5 h-5 text-yellow-500" /> Success Stories
+                                        </h3>
+                                        <div className="bg-yellow-50/50 rounded-2xl p-6 border border-yellow-100/50 space-y-6">
+                                            {selectedFeature.patientStories.map((story, idx) => (
+                                                <div key={idx} className="relative">
+                                                    <p className="text-slate-800 italic text-xl mb-3 leading-relaxed font-serif">"{story.story}"</p>
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center font-bold text-yellow-700 text-xs">
+                                                            {story.name.charAt(0)}
+                                                        </div>
+                                                        <div>
+                                                            <p className="font-bold text-slate-900 text-sm">{story.name}</p>
+                                                            <p className="text-slate-500 text-xs uppercase font-bold">{story.role}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            {/* Sticky Footer CTA */}
-                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 bg-white border-t border-slate-100 flex items-center justify-between z-10 shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+                        {/* Sticky Footer CTA */}
+                        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-white/80 backdrop-blur-md border-t border-slate-100 flex items-center justify-center z-10">
+                            <div className="flex items-center justify-between w-full max-w-5xl">
                                 <div className="hidden md:block">
                                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Ready to start?</p>
                                     <p className="font-black text-slate-800 text-lg">Book your session today</p>
