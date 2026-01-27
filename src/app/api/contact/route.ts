@@ -48,10 +48,10 @@ export async function POST(req: Request) {
             },
         });
 
-        // Generate Confirmation Link (Assuming localhost for dev, needs domain in prod)
-        // In production, use `process.env.NEXT_PUBLIC_BASE_URL` or req.headers.get('host')
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-        const confirmUrl = `${baseUrl}/api/confirm?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email || '')}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
+        // Generate Confirmation Link
+        // Use the request's origin to ensure it works in production without manual env var setup
+        const origin = new URL(req.url).origin;
+        const confirmUrl = `${origin}/api/confirm?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email || '')}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
 
         const mailOptions = {
             from: '"PhysioCare Booking" <bookings@physiocare.com>',
