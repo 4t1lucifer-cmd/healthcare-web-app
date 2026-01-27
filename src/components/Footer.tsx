@@ -38,10 +38,16 @@ const Footer = () => {
                 <div>
                     <h4 className="text-white font-black uppercase tracking-wider text-xs mb-4 border-b border-white/30 pb-1 inline-block">Explore</h4>
                     <ul className="space-y-2 text-sm">
-                        {['Home', 'About Us', 'Services', 'Testimonials', 'Book Appointment'].map((link) => (
-                            <li key={link}>
-                                <a href="#" className="hover:text-white/80 transition-colors block text-white/90 font-medium hover:translate-x-1 duration-300">
-                                    {link}
+                        {[
+                            { name: 'Home', href: '/' },
+                            { name: 'About Us', href: '/#about' },
+                            { name: 'Services', href: '/#services' },
+                            { name: 'Testimonials', href: '/#testimonials' },
+                            { name: 'Book Appointment', href: '/appointment' }
+                        ].map((item) => (
+                            <li key={item.name}>
+                                <a href={item.href} className="hover:text-white/80 transition-colors block text-white/90 font-medium hover:translate-x-1 duration-300">
+                                    {item.name}
                                 </a>
                             </li>
                         ))}
@@ -52,10 +58,16 @@ const Footer = () => {
                 <div>
                     <h4 className="text-white font-black uppercase tracking-wider text-xs mb-4 border-b border-white/30 pb-1 inline-block">Treatments</h4>
                     <ul className="space-y-2 text-sm">
-                        {['Sports Injury Rehab', 'Post-Surgery Recovery', 'Chronic Pain Mgmt', 'Chiropractic Care', 'Home Physiotherapy'].map((service) => (
-                            <li key={service}>
-                                <a href="#" className="hover:text-white/80 transition-colors block text-white/90 font-medium hover:translate-x-1 duration-300">
-                                    {service}
+                        {[
+                            { name: 'Sports Injury Rehab', href: '/#services' },
+                            { name: 'Post-Surgery Recovery', href: '/#services' },
+                            { name: 'Chronic Pain Mgmt', href: '/#services' },
+                            { name: 'Chiropractic Care', href: '/#services' },
+                            { name: 'Home Physiotherapy', href: '/#services' }
+                        ].map((service) => (
+                            <li key={service.name}>
+                                <a href={service.href} className="hover:text-white/80 transition-colors block text-white/90 font-medium hover:translate-x-1 duration-300">
+                                    {service.name}
                                 </a>
                             </li>
                         ))}
