@@ -66,46 +66,58 @@ const Awareness = () => {
                         src="/PIC2.jpeg"
                         alt="Physiotherapy Exercise"
                         fill
-                        className="object-cover"
+                        className="object-cover object-center"
                     />
-                    {/* Dark Overlay for Text Readability */}
-                    <div className="absolute inset-0 bg-black/60 md:bg-black/50" />
+                    {/* Gradient Overlay: Dark on Left, Transparent on Right */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
                 </div>
 
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div className="text-white">
-                        <h3 className="text-3xl md:text-4xl font-black mb-6 drop-shadow-lg">Daily Habits for a Healthy Body</h3>
-                        <p className="text-white/95 text-lg mb-10 leading-relaxed font-medium drop-shadow-md">
-                            Consistency is key. Incorporating these simple awareness practices into your daily routine
-                            can significantly reduce the risk of chronic pain.
-                        </p>
-                        <a href="/appointment" className="inline-flex items-center gap-2 bg-[#1DB4A1] text-white border border-[#1DB4A1] px-8 py-4 rounded-xl font-bold shadow-[0_0_20px_rgba(29,180,161,0.3)] hover:scale-105 transition-all">
-                            Book a Check-up
-                            <Activity className="w-5 h-5" />
-                        </a>
-                    </div>
+                <div className="relative z-10 w-full p-8 md:p-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        {/* Content moved to Left Side */}
+                        <div className="space-y-10">
+                            <div className="text-white">
+                                <h3 className="text-3xl md:text-5xl font-black mb-6 drop-shadow-2xl leading-tight">
+                                    Daily Habits <br />
+                                    <span className="text-[#1DB4A1]">Healthy Body</span>
+                                </h3>
+                                <p className="text-white/90 text-lg mb-8 leading-relaxed font-medium drop-shadow-md max-w-md">
+                                    Consistency is key. Incorporating these simple practices into your routine
+                                    can significantly reduce chronic pain risk.
+                                </p>
+                                <a href="/appointment" className="inline-flex items-center gap-2 bg-[#1DB4A1] text-white border border-[#1DB4A1] px-8 py-4 rounded-xl font-bold shadow-[0_0_20px_rgba(29,180,161,0.3)] hover:scale-105 transition-all mb-10">
+                                    Book a Check-up
+                                    <Activity className="w-5 h-5" />
+                                </a>
+                            </div>
 
-                    <div className="grid gap-6">
-                        {exercises.map((ex, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.2 + i * 0.1 }}
-                                className="bg-black/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 flex items-center gap-6 shadow-lg hover:bg-black/20 transition-colors"
-                            >
-                                <div className="w-12 h-12 bg-[#1DB4A1]/20 rounded-full flex items-center justify-center flex-shrink-0 border border-[#1DB4A1]/30">
-                                    <ex.icon className="w-6 h-6 text-[#1DB4A1]" />
-                                </div>
-                                <div className="text-white">
-                                    <h4 className="text-lg font-bold flex items-center gap-3">
-                                        {ex.title}
-                                        <span className="text-xs bg-white/10 px-2 py-1 rounded-md border border-white/10">{ex.time}</span>
-                                    </h4>
-                                    <p className="text-white/80 text-sm mt-1">{ex.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
+                            {/* Compact Cards Grid below text */}
+                            <div className="grid gap-4">
+                                {exercises.map((ex, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.2 + i * 0.1 }}
+                                        className="bg-white/5 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 hover:bg-black/20 transition-colors max-w-md"
+                                    >
+                                        <div className="w-10 h-10 bg-[#1DB4A1]/20 rounded-full flex items-center justify-center flex-shrink-0 border border-[#1DB4A1]/30">
+                                            <ex.icon className="w-5 h-5 text-[#1DB4A1]" />
+                                        </div>
+                                        <div className="text-white">
+                                            <h4 className="text-base font-bold flex items-center gap-2">
+                                                {ex.title}
+                                                <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full border border-white/10 uppercase tracking-wide">{ex.time}</span>
+                                            </h4>
+                                            <p className="text-white/70 text-xs mt-0.5">{ex.desc}</p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right Side Empty for Image Visibility */}
+                        <div className="hidden lg:block"></div>
                     </div>
                 </div>
             </div>
