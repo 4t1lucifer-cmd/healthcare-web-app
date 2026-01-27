@@ -5,7 +5,8 @@ import { z } from 'zod';
 // Input Validation Schema
 const contactSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters").max(100),
-    email: z.string().email("Invalid email address"),
+    email: z.string().email("Invalid email address").optional().or(z.literal('')),
+    mobile: z.string().regex(/^\d{10}$/, "Mobile number must be 10 digits"),
     message: z.string().min(10, "Message must be at least 10 characters").max(2000),
     date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format"),
     time: z.string().regex(/^\d{2}:\d{2}$/, "Invalid time format"),
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
             }, { status: 400 });
         }
 
-        const { name, email, message, date, time, service } = result.data;
+        const { name, email, mobile, message, date, time, service } = result.data;
         const sanitizedMessage = sanitize(message);
 
         const transporter = nodemailer.createTransport({
@@ -56,7 +57,8 @@ export async function POST(req: Request) {
                     <h2 style="color: #0d9488; margin-bottom: 24px; border-bottom: 2px solid #0d9488; padding-bottom: 12px;">New Appointment Request</h2>
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr><td style="padding: 8px 0; font-weight: bold;">Patient:</td><td>${sanitize(name)}</td></tr>
-                        <tr><td style="padding: 8px 0; font-weight: bold;">Email:</td><td>${email}</td></tr>
+                        <tr><td style="padding: 8px 0; font-weight: bold;">Mobile:</td><td>${sanitize(mobile)}</td></tr>
+                        <tr><td style="padding: 8px 0; font-weight: bold;">Email:</td><td>${email || 'Not provided'}</td></tr>
                         <tr><td style="padding: 8px 0; font-weight: bold;">Service:</td><td>${service}</td></tr>
                         <tr><td style="padding: 8px 0; font-weight: bold;">Preferred:</td><td>${date} at ${time}</td></tr>
                     </table>

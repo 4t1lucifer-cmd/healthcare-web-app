@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Loader2, Calendar, Clock, ClipboardList, User, Mail, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Loader2, Calendar, Clock, ClipboardList, User, Mail, MessageSquare, Phone } from 'lucide-react';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        mobile: '',
         message: '',
         date: '',
         time: '',
@@ -20,7 +21,8 @@ const Contact = () => {
     const validate = () => {
         const newErrors: Record<string, string> = {};
         if (formData.name.length < 2) newErrors.name = "Name is too short";
-        if (!/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Invalid email";
+        if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.email = "Invalid email";
+        if (!/^\d{10}$/.test(formData.mobile)) newErrors.mobile = "Mobile number must be 10 digits";
         if (formData.message.length < 10) newErrors.message = "Please provide more detail (min 10 chars)";
         if (!formData.date) newErrors.date = "Date is required";
         if (!formData.time) newErrors.time = "Time is required";
@@ -53,6 +55,7 @@ const Contact = () => {
                 setFormData({
                     name: '',
                     email: '',
+                    mobile: '',
                     message: '',
                     date: '',
                     time: '',
@@ -151,18 +154,32 @@ const Contact = () => {
                             </div>
                             <div className="space-y-3">
                                 <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
-                                    <Mail className="w-4 h-4 text-primary" /> Email Address
+                                    <Phone className="w-4 h-4 text-primary" /> Mobile Number <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     required
-                                    type="email"
-                                    placeholder="alex@example.com"
-                                    className={`w-full bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    type="tel"
+                                    placeholder="9876543210"
+                                    className={`w-full bg-slate-50 border ${errors.mobile ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
+                                    value={formData.mobile}
+                                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                                 />
-                                {errors.email && <p className="text-red-500 text-xs font-bold ml-1">{errors.email}</p>}
+                                {errors.mobile && <p className="text-red-500 text-xs font-bold ml-1">{errors.mobile}</p>}
                             </div>
+                        </div>
+
+                        <div className="space-y-3">
+                            <label className="text-sm font-black text-foreground uppercase tracking-widest ml-1 flex items-center gap-2">
+                                <Mail className="w-4 h-4 text-primary" /> Email Address <span className="text-slate-400 normal-case tracking-normal">(Optional)</span>
+                            </label>
+                            <input
+                                type="email"
+                                placeholder="alex@example.com"
+                                className={`w-full bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-200'} px-6 py-4 rounded-2xl focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all placeholder:text-slate-400 font-bold text-foreground`}
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            />
+                            {errors.email && <p className="text-red-500 text-xs font-bold ml-1">{errors.email}</p>}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
