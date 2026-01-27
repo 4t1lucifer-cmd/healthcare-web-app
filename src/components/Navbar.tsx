@@ -1,109 +1,92 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HeartPulse, Menu, X, ChevronRight } from 'lucide-react';
+import { HeartPulse, Menu, X, ChevronRight, Home, User, Mail, Calendar } from 'lucide-react';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const menuItems = [
+    { name: "Home", href: "#", icon: Home },
+    { name: "Services", href: "#services", icon: HeartPulse },
+    { name: "About", href: "#about", icon: User },
+    { name: "Contact", href: "#contact", icon: Mail },
+  ];
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'h-20 glass shadow-2xl border-b border-white/10' : 'h-24'
-          } flex items-center px-6 md:px-12 justify-between`}
+      {/* Floating Toggle Button */}
+      <motion.button
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={toggleMenu}
+        className={`fixed top-6 right-6 z-[60] p-4 rounded-full shadow-2xl transition-all duration-300 ${isOpen ? 'bg-white text-red-500' : 'bg-primary text-white'
+          }`}
       >
-        <a href="#" className="flex items-center gap-2 text-2xl font-black gradient-text cursor-pointer tracking-tighter hover:scale-105 transition-transform">
-          <HeartPulse className="text-primary w-8 h-8 animate-pulse" />
-          <span>PhysioCare</span>
-        </a>
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </motion.button>
 
-        <div className="hidden md:flex space-x-10 text-sm font-black uppercase tracking-widest">
-          {['Services', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="hover:text-primary transition-all text-foreground font-black relative group overflow-hidden"
-            >
-              {item}
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-            </a>
-          ))}
-        </div>
+      {/* Brand Logo - Fixed Top Left (Optional, keeping it subtle) */}
+      <motion.a
+        href="#"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="fixed top-6 left-6 z-40 flex items-center gap-2 text-xl font-black gradient-text mix-blend-multiply"
+      >
+        <HeartPulse className="text-primary w-8 h-8" />
+        <span className="hidden sm:inline">PhysioCare</span>
+      </motion.a>
 
-        <div className="flex items-center gap-6">
-          <button className="hidden sm:block text-xs font-black uppercase tracking-widest text-foreground/70 hover:text-primary transition-colors">
-            Patient Portal
-          </button>
-          <a href="#contact" className="bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-black transition-all shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 uppercase tracking-widest">
-            Book Now
-          </a>
-          <div
-            className="md:hidden p-2 glass rounded-xl cursor-pointer hover:bg-black/5 transition-colors"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <Menu className="w-6 h-6 text-primary" />
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Mobile Menu Overlay */}
+      {/* Fullscreen Navigation Drawer */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {isOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 z-[100] bg-white flex flex-col p-8"
+            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
+            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-xl flex flex-col items-center justify-center p-6"
           >
-            <div className="flex justify-between items-center mb-12">
-              <div className="flex items-center gap-2 text-2xl font-black gradient-text">
-                <HeartPulse className="text-primary w-8 h-8" />
-                <span>PhysioCare</span>
-              </div>
-              <X
-                className="w-8 h-8 text-primary cursor-pointer hover:rotate-90 transition-transform"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-            </div>
-
-            <div className="flex flex-col gap-6">
-              {['Services', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-4xl font-black text-foreground hover:text-primary transition-colors flex items-center justify-between group"
+            <nav className="flex flex-col gap-8 w-full max-w-lg">
+              {menuItems.map((item, i) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.1 }}
+                  className="group flex items-center justify-between text-4xl md:text-5xl font-black text-slate-800 hover:text-primary transition-colors cursor-pointer"
                 >
-                  {item}
-                  <ChevronRight className="w-8 h-8 group-hover:translate-x-2 transition-transform opacity-20" />
-                </a>
+                  <span className="flex items-center gap-4">
+                    <item.icon className="w-8 h-8 opacity-40 group-hover:opacity-100 transition-opacity" />
+                    {item.name}
+                  </span>
+                  <ChevronRight className="w-8 h-8 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all" />
+                </motion.a>
               ))}
-            </div>
+            </nav>
 
-            <div className="mt-auto pt-10 border-t border-black/5 space-y-6">
-              <button className="w-full text-center py-4 text-foreground/60 font-black uppercase tracking-widest">
-                Patient Portal
-              </button>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-12 w-full max-w-lg"
+            >
               <a
                 href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center bg-primary text-primary-foreground py-6 rounded-2xl font-black text-xl uppercase tracking-widest"
+                onClick={() => setIsOpen(false)}
+                className="block w-full bg-primary text-white text-center py-5 rounded-2xl font-black text-xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3"
               >
+                <Calendar className="w-6 h-6" />
                 Book Appointment
               </a>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -112,4 +95,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
