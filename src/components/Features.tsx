@@ -201,7 +201,6 @@ const Features = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {features.map((feature, index) => (
                     <motion.div
-                        layoutId={`card-container-${feature.id}`}
                         key={feature.id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -227,11 +226,11 @@ const Features = () => {
             <AnimatePresence>
                 {selectedFeature && (
                     <motion.div
-                        layoutId={`card-container-${selectedFeature.id}`}
                         className="fixed inset-0 z-[100] bg-white flex flex-col md:flex-row overflow-hidden"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0, y: '100%' }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: '100%' }}
+                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
                     >
                         {/* CLOSE BUTTON (Mobile Fixed) */}
                         <button
@@ -251,8 +250,7 @@ const Features = () => {
 
                         {/* LEFT: IMAGE HERO (Scrollable on mobile, Fixed on Desktop) */}
                         <div className="w-full md:w-1/2 h-[45vh] md:h-full relative flex-shrink-0 bg-slate-100">
-                            <motion.div
-                                layoutId={`image-container-${selectedFeature.id}`}
+                            <div
                                 className="w-full h-full relative"
                             >
                                 <Image
@@ -263,7 +261,7 @@ const Features = () => {
                                     priority
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                 />
-                            </motion.div>
+                            </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:hidden" />
 
                             {/* Mobile Title Overlay */}
