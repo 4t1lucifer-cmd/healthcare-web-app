@@ -288,7 +288,7 @@ const Contact = () => {
                             )}
                         </AnimatePresence>
                     </form>
-                </div>>
+                </div>
             </div>
         </section>
     );
