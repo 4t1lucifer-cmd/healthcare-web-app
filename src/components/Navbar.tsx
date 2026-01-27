@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: "Home", href: "#" },
     { name: "Services", href: "#services" },
     { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/appointment" },
   ];
 
   return (
@@ -45,7 +45,7 @@ const Navbar = () => {
       <div className="fixed top-6 right-6 z-[60] flex items-center gap-3">
         {/* Persistent CTA Button */}
         <motion.a
-          href="#contact"
+          href="/appointment"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           whileHover={{ scale: 1.05 }}
@@ -58,7 +58,7 @@ const Navbar = () => {
 
         {/* Mobile Icon-only CTA (visible only on small screens) */}
         <motion.a
-          href="#contact"
+          href="/appointment"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           className="sm:hidden bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/20 flex items-center justify-center"
