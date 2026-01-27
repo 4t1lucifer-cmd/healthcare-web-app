@@ -1,160 +1,157 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, HeartPulse, ShieldCheck, UserCheck, Globe, Accessibility, X, CheckCircle, ChevronRight, Star } from 'lucide-react';
+import { Activity, HeartPulse, ShieldCheck, UserCheck, Globe, Accessibility, X, CheckCircle, ChevronRight, Star, ArrowLeft, Calendar } from 'lucide-react';
 
+// Data reused with slight updates for visuals
 const features = [
     {
         id: 'sports-injury',
-        title: 'Sports Injuries',
-        description: 'Targeted recovery plans for athletes to return to peak performance safely and quickly.',
-        fullDescription: 'Our sports injury rehabilitation program is designed for athletes of all levels. We focus not just on healing the injury, but on correcting the underlying biomechanical issues that caused it. From acute management to return-to-sport testing, we are with you every step of the way.',
+        title: 'Sports Injury Rehabilitation',
+        tagline: 'Return to Play, Stronger Than Before',
+        description: 'Elite-level recovery protocols for athletes dealing with ACL tears, ligament strains, and performance issues.',
+        fullDescription: 'Our sports rehabilitation program is built on the same protocols used by professional athletes. We do not just treat the pain; we analyze your biomechanics to correct the root cause of the injury. Whether you are a weekend warrior or a competitive player, our goal is to get you back on the field safely and quickly.',
         icon: Activity,
-        color: 'text-yellow-500',
-        bg: 'bg-yellow-500/10',
-        image: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=800',
+        color: 'text-orange-600',
+        bg: 'bg-orange-50',
+        image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1200',
         subServices: [
-            'ACL & Ligament Rehab',
+            'ACL & Meniscus Rehab',
             'Rotator Cuff Strengthening',
-            'Running Analysis',
-            'Kinesio Taping'
+            'Running Gait Analysis',
+            'Kinesio Taping & Strapping'
         ],
         patientStories: [
             {
                 name: "Rahul K.",
                 role: "Cricket Player",
-                story: "Recovered from a Grade 2 ankle sprain in just 4 weeks and cleared for the seasonal tournament."
+                story: "After a Grade 2 ankle sprain, I was back bowling in the nets within 4 weeks. The rehab was intense but effective."
             },
             {
                 name: "Priya Singh",
                 role: "Marathon Runner",
-                story: "Eliminated chronic shin splints with gait correction and returned to running pain-free."
+                story: "Eliminated chronic shin splints with their gait correction program. Finally running pain-free."
             }
         ]
     },
     {
         id: 'post-op',
-        title: 'Post-Op Rehab',
-        description: 'Specialized care to restore strength and mobility after surgical procedures.',
-        fullDescription: 'Surgery is only half the battle. Our post-operative protocols are evidence-based and customized to your specific surgery type. We work closely with your surgeon to ensure safe progression, minimizing scar tissue and maximizing range of motion.',
+        title: 'Post-Surgical Rehabilitation',
+        tagline: 'Safe, Guided Recovery After Surgery',
+        description: 'Evidence-based care for Total Knee Replacements, Hip Surgeries, and Fracture repairs.',
+        fullDescription: 'Surgery is only the first step. The success of your procedure largely depends on the quality of rehabilitation. We work in coordination with your orthopedic surgeon to ensure your recovery is on track, managing scar tissue, swelling, and restoring full range of motion.',
         icon: HeartPulse,
-        color: 'text-blue-500',
-        bg: 'bg-blue-500/10',
-        image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800',
+        color: 'text-blue-600',
+        bg: 'bg-blue-50',
+        image: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200',
         subServices: [
-            'Total Knee Replacement',
+            'Total Knee Replacement (TKR)',
             'Hip Replacement Rehab',
-            'Spinal Surgery Recovery',
-            'Fracture Management'
+            'Spine Surgery Recovery',
+            'Post-Fracture Mobilization'
         ],
         patientStories: [
             {
                 name: "Mrs. Sharma",
                 role: "Retired Teacher (68)",
-                story: "Started walking independently without a stick just 3 weeks after Total Knee Replacement."
-            },
-            {
-                name: "Ankit D.",
-                role: "Software Engineer",
-                story: "Regained full shoulder mobility 2 months post-shoulder stabilization surgery."
+                story: "I was terrified of walking after my knee replacement. The team gave me confidence and I was walking without a stick in 3 weeks."
             }
         ]
     },
     {
         id: 'chronic-pain',
-        title: 'Chronic Pain',
-        description: 'Comprehensive management strategies for long-term neck, back, and joint pain.',
-        fullDescription: 'Living with chronic pain can be debilitating. We use a combination of manual therapy, dry needling, and therapeutic exercise to break the pain cycle. Our holistic approach addresses lifestyle factors and posture to prevent recurrence.',
+        title: 'Chronic Pain Management',
+        tagline: 'Break Free from Long-Term Pain',
+        description: 'Specialized therapy for Cervical Spondylosis, Sciatica, and Lower Back Pain.',
+        fullDescription: 'Chronic pain affects every aspect of your life. Our approach combines manual therapy to break the pain cycle with therapeutic exercises to build resilience. We focus on long-term relief, not just temporary fixes.',
         icon: ShieldCheck,
-        color: 'text-purple-500',
-        bg: 'bg-purple-500/10',
-        image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800',
+        color: 'text-purple-600',
+        bg: 'bg-purple-50',
+        image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=1200',
         subServices: [
-            'Sciatica Relief',
-            'Cervical Spondylosis',
-            'Lower Back Pain',
-            'Fibromyalgia Management'
+            'Sciatica Nerve Decompression',
+            'Cervical Spondylosis Care',
+            'Disc Bulge Treatment',
+            'Fibromyalgia Support'
         ],
         patientStories: [
             {
                 name: "Vikram R.",
                 role: "Bank Manager",
-                story: "Suffered from 5 years of back pain. After 6 sessions, pain reduced by 80% and sleep improved."
-            },
-            {
-                name: "Suman T.",
-                role: "Homemaker",
-                story: "Managed severe cervical spondylosis without painkillers through consistent therapy."
+                story: "Office work destroyed my back. Their ergonomic advice and therapy sessions saved me from surgery."
             }
         ]
     },
     {
         id: 'manual-therapy',
-        title: 'Manual Therapy',
-        description: 'Hands-on techniques to manipulate joints and soft tissue for pain relief.',
-        fullDescription: 'Our manual therapy techniques allow us to assess and treat restriction in movement. We use hands-on manipulation, mobilization, and massage to reduce pain, increase range of motion, and reduce inflammation in soft tissues.',
+        title: 'Manual Therapy & Manipulation',
+        tagline: 'Hands-On Healing for Stiffness',
+        description: 'Joint mobilization, Myofascial Release, and Trigger Point Therapy.',
+        fullDescription: 'Sometimes exercises are not enough. Our manual therapy techniques involve skilled hand movements to mobilize joints and soft tissues. This helps reduce inflammation, improve tissue extensibility, and provide immediate pain relief.',
         icon: UserCheck,
-        color: 'text-green-500',
-        bg: 'bg-green-500/10',
-        image: 'https://images.unsplash.com/photo-1600334019640-51026cf301d3?auto=format&fit=crop&q=80&w=800',
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-50',
+        image: 'https://images.unsplash.com/photo-1600334019640-51026cf301d3?auto=format&fit=crop&q=80&w=1200',
         subServices: [
-            'Joint Mobilization',
-            'Myofascial Release',
-            'Trigger Point Therapy',
+            'Spinal Manipulation',
+            'Myofascial Release (MFR)',
+            'Dry Needling',
             'Cupping Therapy'
         ],
         patientStories: [
             {
                 name: "Amit J.",
                 role: "Gym Enthusiast",
-                story: "Restored shoulder mobility instantly after one session of frozen shoulder manipulation."
+                story: "Frozen shoulder released in just one session of manipulation. Incredible relief."
             }
         ]
     },
     {
         id: 'home-visits',
-        title: 'Home Visits',
-        description: 'Professional physiotherapy services in the comfort and privacy of your home.',
-        fullDescription: 'For patients with limited mobility or severe pain, travelling to a clinic can be harmful. We bring the clinic to you. Our home visit kits are fully equipped to handle complex rehabilitation cases including stroke and bedridden care.',
+        title: 'Home Visit Physiotherapy',
+        tagline: 'Expert Care at Your Doorstep',
+        description: 'For bedridden patients, stroke survivors, or those unable to travel.',
+        fullDescription: 'We understand that travel is difficult for some patients. We bring fully equipped physiotherapy care to your home. Our home visit protocols are designed to be as effective as clinic sessions, ensuring continuity of care for neurological and geriatric conditions.',
         icon: Globe,
-        color: 'text-pink-500',
-        bg: 'bg-pink-500/10',
-        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800',
+        color: 'text-rose-600',
+        bg: 'bg-rose-50',
+        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
         subServices: [
-            'Geriatric Care',
-            'Stroke Rehabilitation',
-            'Bedridden Patient Mobilization',
-            'Post-Hospitalization Care'
+            'Stroke/Paralysis Rehab',
+            'Geriatric Mobilization',
+            'Post-Hospitalization Care',
+            'Bedridden Patient Care'
         ],
         patientStories: [
             {
                 name: "Mr. Verma",
                 role: "Stroke Survivor",
-                story: "Regained ability to stand and walk to the bathroom independently after 2 months of home rehab."
+                story: "The team helped my father stand again after his stroke. We are forever grateful."
             }
         ]
     },
     {
         id: 'ergonomics',
-        title: 'Ergonomics',
-        description: 'Expert advice on workplace setup to prevent strain and repetitive injuries.',
-        fullDescription: 'In the digital age, poor posture is the leading cause of musculoskeletal disorders. We analyze your workstation and daily habits to effect changes that prevent pain before it starts. Perfect for corporates and WFH professionals.',
+        title: 'Ergonomics & Posture',
+        tagline: 'Work Without Pain',
+        description: 'Posture correction and workstation assessments for corporates and professionals.',
+        fullDescription: 'Prevent pain before it starts. We analyze your workspace and body mechanics to suggest changes that reduce strain. Ideal for IT professionals, dentists, and anyone sitting for long hours.',
         icon: Accessibility,
-        color: 'text-cyan-500',
-        bg: 'bg-cyan-500/10',
-        image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800',
+        color: 'text-cyan-600',
+        bg: 'bg-cyan-50',
+        image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200',
         subServices: [
-            'Workstation Assessment',
-            'Posture Correction',
+            'Workstation Setup',
+            'Tech-Neck Correction',
             'RSI Prevention',
-            'Corporate Workshops'
+            'Corporate Wellness'
         ],
         patientStories: [
             {
                 name: "Tech Solutions Inc.",
                 role: "Corporate Client",
-                story: "Employee back pain complaints dropped by 60% following our ergonomics workshop."
+                story: "Employee complaints of back pain dropped significantly after the ergonomic workshop."
             }
         ]
     },
@@ -163,143 +160,187 @@ const features = [
 const Features = () => {
     const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
 
+    // Lock body scroll when modal is open
+    React.useEffect(() => {
+        if (selectedFeature) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => { document.body.style.overflow = 'unset'; };
+    }, [selectedFeature]);
+
     return (
-        <section id="services" className="py-24 px-6 md:px-12 bg-background relative overflow-hidden">
-            {/* Header */}
-            <div className="text-center mb-20">
+        <section id="services" className="py-24 px-6 md:px-12 bg-white relative">
+            {/* Main Listing Header */}
+            <div className="text-center mb-16">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-4xl md:text-6xl font-black mb-6 tracking-tighter"
+                    className="text-4xl md:text-5xl font-black mb-4 text-slate-900 tracking-tight"
                 >
-                    Specialized <span className="gradient-text">Care</span>
+                    Our Specialist <span className="text-primary">Services</span>
                 </motion.h2>
-                <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-medium">
-                    Tap on any service to explore detailed treatment plans and successes.
+                <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
+                    Comprehensive, evidence-based care tailored to your needs.
                 </p>
             </div>
 
-            {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Service Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {features.map((feature, index) => (
                     <motion.div
-                        layoutId={`card-${feature.id}`}
+                        layoutId={`card-container-${feature.id}`}
                         key={feature.id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1 }}
                         onClick={() => setSelectedFeature(feature)}
-                        className="group p-8 rounded-3xl bg-white border border-slate-100 shadow-lg hover:shadow-2xl hover:border-primary/20 transition-all cursor-pointer relative overflow-hidden"
+                        className="group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all cursor-pointer relative overflow-hidden flex flex-col items-start"
                     >
-                        <div className={`w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                            <feature.icon className={`w-7 h-7 ${feature.color}`} />
+                        <div className={`w-12 h-12 rounded-xl ${feature.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                            <feature.icon className={`w-6 h-6 ${feature.color}`} />
                         </div>
-                        <h3 className="text-2xl font-black mb-3 text-slate-800">{feature.title}</h3>
-                        <p className="text-slate-600 font-medium leading-relaxed mb-6">{feature.description}</p>
+                        <h3 className="text-xl font-bold mb-2 text-slate-900 group-hover:text-primary transition-colors">{feature.title}</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-4">{feature.description}</p>
 
-                        <div className="flex items-center text-primary font-bold text-sm uppercase tracking-wider group-hover:translate-x-2 transition-transform">
-                            View Details <ChevronRight className="w-4 h-4 ml-1" />
+                        <div className="mt-auto flex items-center text-primary font-bold text-xs uppercase tracking-wider">
+                            View Details <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                         </div>
-
-                        {/* Hover Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-slate-50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     </motion.div>
                 ))}
             </div>
 
-            {/* Expanded Modal */}
+            {/* Immersive Product Page Modal */}
             <AnimatePresence>
                 {selectedFeature && (
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                    <motion.div
+                        layoutId={`card-container-${selectedFeature.id}`}
+                        className="fixed inset-0 z-[100] bg-white flex flex-col md:flex-row overflow-hidden"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        {/* CLOSE BUTTON (Mobile Fixed) */}
+                        <button
                             onClick={() => setSelectedFeature(null)}
-                            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-                        />
-                        <motion.div
-                            layoutId={`card-${selectedFeature.id}`}
-                            className="w-full max-w-4xl bg-white rounded-[2.5rem] shadow-2xl relative overflow-hidden max-h-[90vh] flex flex-col md:flex-row"
+                            className="absolute top-4 left-4 z-50 p-3 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full hover:bg-white/20 transition-colors md:hidden"
                         >
-                            {/* Close Button */}
-                            <button
-                                onClick={(e) => { e.stopPropagation(); setSelectedFeature(null); }}
-                                className="absolute top-4 right-4 z-20 p-2 bg-black/20 hover:bg-black/40 text-white rounded-full backdrop-blur-md transition-colors"
-                            >
-                                <X className="w-6 h-6" />
-                            </button>
+                            <ArrowLeft className="w-6 h-6" />
+                        </button>
 
-                            {/* Image Section */}
-                            <div className="w-full md:w-2/5 h-64 md:h-auto relative">
-                                <img
-                                    src={selectedFeature.image}
-                                    alt={selectedFeature.title}
-                                    className="w-full h-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 md:hidden">
-                                    <h3 className="text-3xl font-black text-white">{selectedFeature.title}</h3>
-                                </div>
+                        <button
+                            onClick={() => setSelectedFeature(null)}
+                            className="absolute top-6 right-6 z-50 p-2 bg-black/5 hover:bg-black/10 text-slate-800 rounded-full transition-colors hidden md:block"
+                        >
+                            <X className="w-8 h-8" />
+                        </button>
+
+
+                        {/* LEFT: IMAGE HERO (Scrollable on mobile, Fixed on Desktop) */}
+                        <div className="w-full md:w-1/2 h-[45vh] md:h-full relative flex-shrink-0 bg-slate-100">
+                            <motion.img
+                                layoutId={`image-${selectedFeature.id}`}
+                                src={selectedFeature.image}
+                                alt={selectedFeature.title}
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:hidden" />
+
+                            {/* Mobile Title Overlay */}
+                            <div className="absolute bottom-6 left-6 right-6 md:hidden">
+                                <span className="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full uppercase tracking-wider mb-2 inline-block">
+                                    PhysioCare Service
+                                </span>
+                                <h2 className="text-2xl font-black text-white leading-tight">{selectedFeature.title}</h2>
                             </div>
+                        </div>
 
-                            {/* Content Section */}
-                            <div className="p-8 md:p-12 overflow-y-auto flex-1">
-                                <div className={`hidden md:flex w-14 h-14 rounded-2xl ${selectedFeature.bg} items-center justify-center mb-6`}>
-                                    <selectedFeature.icon className={`w-7 h-7 ${selectedFeature.color}`} />
+                        {/* RIGHT: CONTENT SCROLLABLE */}
+                        <div className="w-full md:w-1/2 h-full flex flex-col bg-white overflow-y-auto relative">
+                            <div className="p-6 md:p-12 pb-32">
+                                {/* Desktop Breadcrumb/Badge */}
+                                <div className="hidden md:flex items-center gap-2 mb-6 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                                    <span className="text-primary">Services</span>
+                                    <ChevronRight className="w-4 h-4" />
+                                    <span>{selectedFeature.id.replace('-', ' ')}</span>
                                 </div>
 
-                                <h3 className="hidden md:block text-4xl font-black mb-6 text-slate-800">{selectedFeature.title}</h3>
+                                <motion.h2
+                                    className="hidden md:block text-4xl lg:text-5xl font-black text-slate-900 mb-4 leading-tight"
+                                >
+                                    {selectedFeature.title}
+                                </motion.h2>
 
-                                <p className="text-slate-600 text-lg leading-relaxed mb-8 font-medium">
+                                <p className="text-lg md:text-xl font-medium text-slate-500 mb-8 md:mb-10 leading-relaxed">
                                     {selectedFeature.fullDescription}
                                 </p>
 
-                                <div className="space-y-8">
-                                    {/* Sub Services */}
-                                    <div>
-                                        <h4 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">Treatment Includes</h4>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                            {selectedFeature.subServices.map((sub, idx) => (
-                                                <div key={idx} className="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                                                    <span className="font-bold text-slate-700">{sub}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
+                                <div className="h-px w-full bg-slate-100 mb-10" />
 
-                                    {/* Patient Stories */}
-                                    <div>
-                                        <h4 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">Patient Success Stories</h4>
-                                        <div className="space-y-4">
-                                            {selectedFeature.patientStories.map((story, idx) => (
-                                                <div key={idx} className="bg-yellow-50/50 p-5 rounded-2xl border border-yellow-100">
-                                                    <div className="flex items-center gap-2 mb-2">
-                                                        <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                                                        <span className="font-black text-slate-800">{story.name}</span>
-                                                        <span className="text-slate-400 text-sm font-bold bg-white px-2 py-0.5 rounded-full border border-slate-100">{story.role}</span>
-                                                    </div>
-                                                    <p className="text-slate-600 italic">"{story.story}"</p>
+                                {/* Sub Services Grid */}
+                                <div className="mb-12">
+                                    <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                        <Activity className="w-5 h-5 text-primary" /> What We Treat
+                                    </h3>
+                                    <div className="grid grid-cols-1 gap-4">
+                                        {selectedFeature.subServices.map((sub, idx) => (
+                                            <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-primary/30 transition-colors">
+                                                <div className="mt-1 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                                    <CheckCircle className="w-3 h-3 text-green-600" />
                                                 </div>
-                                            ))}
-                                        </div>
+                                                <div>
+                                                    <h4 className="font-bold text-slate-800 text-base">{sub}</h4>
+                                                    <p className="text-slate-400 text-sm">Specialized protocol available.</p>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
 
-                                <div className="mt-10 pt-8 border-t border-slate-100">
-                                    <a
-                                        href="#contact"
-                                        onClick={() => setSelectedFeature(null)}
-                                        className="block w-full text-center bg-primary text-white py-4 rounded-xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                                    >
-                                        Book This Service
-                                    </a>
+                                {/* Patient Stories */}
+                                <div className="mb-8">
+                                    <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                        <Star className="w-5 h-5 text-yellow-500" /> Success Stories
+                                    </h3>
+                                    <div className="bg-yellow-50/50 rounded-2xl p-6 border border-yellow-100/50">
+                                        {selectedFeature.patientStories.map((story, idx) => (
+                                            <div key={idx} className="mb-6 last:mb-0">
+                                                <p className="text-slate-700 italic text-lg mb-3 leading-relaxed">"{story.story}"</p>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center font-bold text-yellow-700 text-xs">
+                                                        {story.name.charAt(0)}
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-bold text-slate-900 text-sm">{story.name}</p>
+                                                        <p className="text-slate-500 text-xs uppercase font-bold">{story.role}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </motion.div>
-                    </div>
+
+                            {/* Sticky Footer CTA */}
+                            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 bg-white border-t border-slate-100 flex items-center justify-between z-10 shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+                                <div className="hidden md:block">
+                                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Ready to start?</p>
+                                    <p className="font-black text-slate-800 text-lg">Book your session today</p>
+                                </div>
+                                <a
+                                    href="#contact"
+                                    onClick={() => setSelectedFeature(null)}
+                                    className="w-full md:w-auto bg-primary text-white px-8 py-4 rounded-xl font-black text-lg shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                                >
+                                    <Calendar className="w-5 h-5" />
+                                    Book Appointment
+                                </a>
+                            </div>
+                        </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </section>
