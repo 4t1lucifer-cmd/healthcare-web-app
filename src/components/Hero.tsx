@@ -75,7 +75,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto items-center"
+                className="relative z-10 flex flex-col sm:flex-row gap-5 w-full sm:w-auto items-center"
             >
                 <a href="/appointment" className="group bg-[#1DB4A1] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(29,180,161,0.3)] hover:shadow-[0_0_30px_rgba(29,180,161,0.5)] hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 text-lg border border-[#1DB4A1]">
                     Book Appointment

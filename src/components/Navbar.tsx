@@ -44,7 +44,7 @@ const Navbar = () => {
       // Actually, I'll use multiple chunks in one call.
 
       {/* Top Right Control Cluster */}
-      <div className="fixed top-6 right-6 z-[60] flex items-center gap-3">
+      <div className="fixed top-6 right-6 z-[60] flex items-center gap-3 pointer-events-auto">
         {/* Persistent CTA Button */}
         <a
           href="/appointment"
