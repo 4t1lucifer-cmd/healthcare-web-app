@@ -81,16 +81,10 @@ const Hero = () => {
             >
                 <a
                     href="/appointment"
-                    onClick={(e) => {
-                        // Force navigation for maximum reliability
-                        if (typeof window !== 'undefined') {
-                            window.location.href = '/appointment';
-                        }
-                    }}
-                    className="group bg-[#1DB4A1] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(29,180,161,0.3)] hover:shadow-[0_0_30px_rgba(29,180,161,0.5)] hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 text-lg border border-[#1DB4A1] cursor-pointer"
+                    className="group bg-[#1DB4A1] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(29,180,161,0.3)] hover:shadow-[0_0_30px_rgba(29,180,161,0.5)] hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 text-lg border border-[#1DB4A1]"
                 >
                     Book Appointment
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform pointer-events-none" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
                     href="#services"
