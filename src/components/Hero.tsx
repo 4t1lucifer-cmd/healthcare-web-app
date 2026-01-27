@@ -7,17 +7,31 @@ import Image from 'next/image';
 
 const Hero = () => {
     return (
-        <section className="relative min-h-[65vh] md:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 md:px-12 overflow-hidden py-12 md:py-20">
+        <section className="relative min-h-[50vh] md:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 md:px-12 overflow-hidden py-10 md:py-20">
             {/* Banner Background Image */}
             <div className="absolute inset-0 -z-20">
-                <Image
-                    src="/pic1.jpeg"
-                    alt="Physiotherapy Banner"
-                    fill
-                    className="object-cover object-[50%_20%] md:object-center" // Mobile: Focus 20% from top (faces), Desktop: Center
-                    priority
-                    sizes="100vw"
-                />
+                {/* Desktop Image: Full Cover */}
+                <div className="hidden md:block absolute inset-0">
+                    <Image
+                        src="/pic1.jpeg"
+                        alt="Physiotherapy Banner"
+                        fill
+                        className="object-cover object-center"
+                        priority
+                        sizes="100vw"
+                    />
+                </div>
+                {/* Mobile Image: Adjusted to show more content */}
+                <div className="md:hidden absolute inset-0 bg-slate-900">
+                    <Image
+                        src="/pic1.jpeg"
+                        alt="Physiotherapy Banner"
+                        fill
+                        className="object-cover object-center opacity-70"
+                        priority
+                        sizes="100vw"
+                    />
+                </div>
             </div>
 
             {/* Dark Overlay for Readability */}
