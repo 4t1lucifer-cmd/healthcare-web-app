@@ -18,7 +18,7 @@ const Footer = () => {
                         <span>PhysioCare</span>
                     </div>
                     <p className="text-white/90 text-sm leading-snug max-w-sm font-medium">
-                        Advanced physiotherapy clinic led by <strong className="text-white">Nadim Raza</strong>.
+                        Advanced physiotherapy clinic led by <strong className="text-white">Raza Nadim</strong>.
                         Restoring movement with care.
                     </p>
                     <div className="flex gap-3 pt-2">
