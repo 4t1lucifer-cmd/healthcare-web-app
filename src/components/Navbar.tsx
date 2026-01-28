@@ -91,7 +91,7 @@ const Navbar = () => {
                   {menuItems.map((item) => (
                     <a
                       key={item.name}
-                      href="/appointment"
+                      href={item.href}
                       onClick={() => setIsOpen(false)}
                       className="px-6 py-4 text-slate-700 font-bold hover:bg-slate-50 hover:text-primary transition-colors flex items-center justify-between group"
                     >
