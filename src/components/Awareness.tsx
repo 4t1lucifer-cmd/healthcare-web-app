@@ -34,8 +34,8 @@ const Awareness = () => {
                     Movement is <span className="text-[#1DB4A1]">Medicine</span>
                 </h2>
                 <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-                    Physiotherapy isn't just about recovery; it's about optimizing your body's potential.
-                    Small daily habits can lead to massive long-term health improvements.
+                    Physiotherapy isn&apos;t just about recovery; it&apos;s about optimizing your body&apos;s potential.
+                    &quot;I had chronic back pain for years. After just 4 sessions here, I feel like a new person! Highly recommend.&quot;
                 </p>
             </div>
 

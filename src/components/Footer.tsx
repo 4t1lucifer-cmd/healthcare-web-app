@@ -1,8 +1,8 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { HeartPulse, Mail, MapPin, Phone, Instagram, Facebook, Linkedin, Twitter, ArrowRight } from 'lucide-react';
+// import { motion } from 'framer-motion';
+import { HeartPulse, Mail, MapPin, Phone, Instagram, Facebook, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
     return (

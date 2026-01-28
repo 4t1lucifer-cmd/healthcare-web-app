@@ -99,7 +99,7 @@ export default function ServicePage({ params }: { params: Promise<{ id: string }
                         <div className="bg-yellow-50/50 rounded-3xl p-8 border border-yellow-100/50 space-y-8">
                             {service.patientStories.map((story, idx) => (
                                 <div key={idx} className="relative">
-                                    <p className="text-slate-800 italic text-2xl mb-4 leading-relaxed font-serif">"{story.story}"</p>
+                                    <p className="text-slate-800 italic text-2xl mb-4 leading-relaxed font-serif">&quot;{story.story}&quot;</p>
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-yellow-200 flex items-center justify-center font-bold text-yellow-700 text-sm">
                                             {story.name.charAt(0)}

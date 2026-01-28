@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, HeartPulse, ShieldCheck, UserCheck, Globe, Accessibility, X, CheckCircle, ChevronRight, Star, ArrowLeft, Calendar } from 'lucide-react';
+import { Activity, X, ChevronRight, Star, ArrowLeft, Calendar } from 'lucide-react';
 import { features } from '@/lib/servicesData';
 
 const Features = () => {
@@ -176,7 +176,7 @@ const Features = () => {
                                         <div className="bg-yellow-50/50 rounded-2xl p-6 border border-yellow-100/50 space-y-6">
                                             {selectedFeature.patientStories.map((story, idx) => (
                                                 <div key={idx} className="relative">
-                                                    <p className="text-slate-800 italic text-xl mb-3 leading-relaxed font-serif">"{story.story}"</p>
+                                                    <p className="text-slate-800 italic text-xl mb-3 leading-relaxed font-serif">&quot;{story.story}&quot;</p>
                                                     <div className="flex items-center gap-3">
                                                         <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center font-bold text-yellow-700 text-xs">
                                                             {story.name.charAt(0)}
@@ -214,7 +214,7 @@ const Features = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </section>
+        </section >
     );
 };
 

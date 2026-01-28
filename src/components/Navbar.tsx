@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HeartPulse, Menu, X, Home, User, Mail, Calendar, ChevronRight } from 'lucide-react';
+import { HeartPulse, Menu, X, Calendar, ChevronRight } from 'lucide-react';
 
 import Link from 'next/link';
 
