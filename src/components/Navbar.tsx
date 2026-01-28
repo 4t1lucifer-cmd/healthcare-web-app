@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: "Home", href: "#" },
     { name: "Services", href: "#services" },
     { name: "About", href: "#about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact", href: "/appointment" },
   ];
 
   return (
@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className="fixed top-6 right-6 z-[60] flex items-center gap-3 pointer-events-auto">
         {/* Persistent CTA Button */}
         <a
-          href="/contact"
+          href="/appointment"
           className="hidden sm:flex bg-primary text-white px-6 py-3 rounded-full font-black text-sm uppercase tracking-wide shadow-lg shadow-primary/20 items-center gap-2 transition-transform hover:scale-105 active:scale-95"
         >
           <Calendar className="w-4 h-4" />
@@ -56,7 +56,7 @@ const Navbar = () => {
 
         {/* Mobile Icon-only CTA (visible only on small screens) */}
         <a
-          href="/contact"
+          href="/appointment"
           className="sm:hidden bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/20 flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
         >
           <Calendar className="w-5 h-5" />
@@ -91,7 +91,7 @@ const Navbar = () => {
                   {menuItems.map((item) => (
                     <a
                       key={item.name}
-                      href="/contact"
+                      href="/appointment"
                       onClick={() => setIsOpen(false)}
                       className="px-6 py-4 text-slate-700 font-bold hover:bg-slate-50 hover:text-primary transition-colors flex items-center justify-between group"
                     >

@@ -124,7 +124,7 @@ export default function ServicePage({ params }: { params: Promise<{ id: string }
                         <p className="font-black text-slate-800 text-xl">Book your session today</p>
                     </div>
                     <a
-                        href="/#contact"
+                        href="/appointment"
                         className="w-full md:w-auto bg-primary text-white px-10 py-5 rounded-2xl font-black text-xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3"
                     >
                         <Calendar className="w-6 h-6" />
