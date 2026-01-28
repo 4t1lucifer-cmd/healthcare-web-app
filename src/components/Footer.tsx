@@ -99,7 +99,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/70 font-medium">
-                <p>&copy; {new Date().getFullYear()} PhysioCare. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} PhysioCare. All rights reserved. <span className="opacity-30 text-[10px] ml-2">v.240128-0625</span></p>
                 <div className="flex gap-6">
                     <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="#" className="hover:text-white transition-colors">Terms & Conditions</a>
