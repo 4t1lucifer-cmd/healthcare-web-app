@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import Contact from "@/components/Contact";
 
 export default function ContactPage() {
     return (
@@ -66,21 +67,10 @@ export default function ContactPage() {
                         </div>
                     </div>
 
-                    <div className="bg-[#1DB4A1] p-10 rounded-[2.5rem] text-white flex flex-col justify-center relative overflow-hidden">
-                        <div className="relative z-10">
-                            <h2 className="text-3xl font-black mb-6">Need an Appointment?</h2>
-                            <p className="text-white/90 mb-8 text-lg font-medium">
-                                Skip the queue and book your consultation online instantly.
-                            </p>
-                            <a
-                                href="/appointment"
-                                className="inline-block bg-white text-[#1DB4A1] px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-slate-50 transition-colors"
-                            >
-                                Book a Check-up Now
-                            </a>
-                        </div>
-                        {/* Decorative Circle */}
-                        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-white/10 rounded-full" />
+                    {/* Contact Form Section */}
+                    <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100">
+                        <h2 className="text-3xl font-black mb-6 text-slate-900">Book Your Check-up</h2>
+                        <Contact />
                     </div>
                 </div>
             </div>
