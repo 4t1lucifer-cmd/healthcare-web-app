@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HeartPulse, Menu, X, Home, User, Mail, Calendar, ChevronRight } from 'lucide-react';
 
+import Link from 'next/link';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -31,36 +33,32 @@ const Navbar = () => {
   return (
     <>
       {/* Brand Logo - Fixed Top Left */}
-// Revert Brand
-      <a
+      <Link
         href="/"
         className="fixed top-6 left-6 z-40 flex items-center gap-2 text-xl font-black gradient-text mix-blend-multiply pointer-events-auto"
       >
         <HeartPulse className="text-primary w-8 h-8" />
         <span className="hidden sm:inline">PhysioCare</span>
-      </a>
-
-// ... (Rest of file will be handled in separate chunks if needed, or I can do a big replace if I verify the file content first)
-      // Actually, I'll use multiple chunks in one call.
+      </Link>
 
       {/* Top Right Control Cluster */}
       <div className="fixed top-6 right-6 z-[60] flex items-center gap-3 pointer-events-auto">
         {/* Persistent CTA Button */}
-        <a
+        <Link
           href="/appointment"
           className="hidden sm:flex bg-primary text-white px-6 py-3 rounded-full font-black text-sm uppercase tracking-wide shadow-lg shadow-primary/20 items-center gap-2 transition-transform hover:scale-105 active:scale-95"
         >
           <Calendar className="w-4 h-4" />
           <span>Book a Check-up</span>
-        </a>
+        </Link>
 
         {/* Mobile Icon-only CTA (visible only on small screens) */}
-        <a
+        <Link
           href="/appointment"
           className="sm:hidden bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/20 flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
         >
           <Calendar className="w-5 h-5" />
-        </a>
+        </Link>
 
         {/* Menu Toggle & Dropdown Container */}
         <div className="relative" ref={menuRef}>
@@ -89,7 +87,7 @@ const Navbar = () => {
               >
                 <div className="flex flex-col">
                   {menuItems.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
@@ -97,7 +95,7 @@ const Navbar = () => {
                     >
                       {item.name}
                       <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </motion.div>
