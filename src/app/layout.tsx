@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Expert Physiotherapy & Rehabilitation | Nadim Raza",
+  title: "PhysioCare | Advanced Physiotherapy & Rehabilitation | Raza Nadim",
   description: "Recover faster and move better with personalized, evidence-based physiotherapy treatments. Specialized in sports rehab, post-surgery care, and chronic pain management.",
   icons: {
     icon: "/file.svg", // Using existing svg as placeholder or default
