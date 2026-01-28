@@ -51,7 +51,7 @@ const Navbar = () => {
           className="hidden sm:flex bg-primary text-white px-6 py-3 rounded-full font-black text-sm uppercase tracking-wide shadow-lg shadow-primary/20 items-center gap-2 transition-transform hover:scale-105 active:scale-95"
         >
           <Calendar className="w-4 h-4" />
-          <span>Book Appointment</span>
+          <span>Book a Check-up</span>
         </a>
 
         {/* Mobile Icon-only CTA (visible only on small screens) */}
